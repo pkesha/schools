@@ -35,4 +35,13 @@ public class Comment {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }
