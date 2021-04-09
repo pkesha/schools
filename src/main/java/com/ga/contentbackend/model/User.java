@@ -1,8 +1,23 @@
 package com.ga.contentbackend.model;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
+
+    @Id
+    @Column
+    //Makes it unique in a serial fashion.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    //Makes sure every email entry in the column is unique
+    @Column(unique = true)
     private String email;
+
+    @Column
     private String password;
 
     public User(Long id, String email, String password) {
