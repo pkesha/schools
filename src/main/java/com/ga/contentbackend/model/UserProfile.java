@@ -51,4 +51,13 @@ public class UserProfile {
     public void setCredentials(List<String> credentials) {
         this.credentials = credentials;
     }
+
+    @Override
+    public String toString() {
+        return "UserProfile{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }
