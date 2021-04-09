@@ -1,8 +1,17 @@
 package com.ga.contentbackend.model;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
 public class Review {
+
+    @Id
+    @Column
+    //Makes it unique in a serial fashion.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String text;
