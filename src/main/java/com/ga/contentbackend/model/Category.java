@@ -2,15 +2,19 @@ package com.ga.contentbackend.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+
+//Entity is each object an entry in the
+//table-> which is denoted with @Table
+@Entity
+@Table(name = "categories")
 public class Category {
 
+    //Indicates a PK
     @Id
     @Column
+    //Makes it unique in a serial fashion.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
