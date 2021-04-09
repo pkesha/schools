@@ -1,9 +1,23 @@
 package com.ga.contentbackend.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Category {
 
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private String title;
+
+    @Column
     private String description;
 
     public Category(Long id, String title, String description) {
