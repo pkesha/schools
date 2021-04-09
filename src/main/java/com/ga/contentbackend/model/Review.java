@@ -49,4 +49,14 @@ public class Review {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", text='" + text + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }
