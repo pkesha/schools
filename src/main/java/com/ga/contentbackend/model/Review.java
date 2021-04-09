@@ -1,11 +1,11 @@
 package com.ga.contentbackend.model;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
+
+@Entity
+@Table(name = "reviews")
 public class Review {
 
     @Id
@@ -13,8 +13,14 @@ public class Review {
     //Makes it unique in a serial fashion.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private String title;
+
+    @Column
     private String text;
+
+    @Column
     private LocalDate date;
 
     public Review(Long id, String title, String text, LocalDate date) {
