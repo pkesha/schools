@@ -12,6 +12,7 @@ public class Category {
         this.description = description;
     }
 
+    //Default case
     public Category() {
     }
 
