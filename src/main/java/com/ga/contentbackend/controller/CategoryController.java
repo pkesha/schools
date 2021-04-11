@@ -59,8 +59,8 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/{categoryId}/reviews/{reviewId}")
-    public List<Review> getCategoryReview(){
-        return categoryService.getCategoryReview();
+    public Review getCategoryReview(Long categoryId, Long reviewId){
+        return categoryService.getCategoryReview(categoryId, reviewId);
     }
 
     @PostMapping("/categories/{categoryId}/reviews")

@@ -85,7 +85,17 @@ public class CategoryService {
         return reviewRepository.findAllByCategoryId(categoryId);
     }
 
-    public void getCategoryReview(){
+    public Review getCategoryReview(Long categoryId, Long reviewId){
+        //checks if the category exists in the DB
+        Category foundCategory = getCategory(categoryId);
+
+        Review foundReview =
+                reviewRepository.findByCategoryIdAndId(categoryId, reviewId);
+        if(foundReview == null){
+            throw new InformationNotFoundException("Review with ID " + reviewId + "not found");
+        } else{
+            return foundReview;
+        }
 
     }
 
