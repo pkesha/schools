@@ -116,15 +116,32 @@ public class CategoryService {
         } else{
             System.out.println("This task is saved");
         }
-
-        System.out.println(review);
         reviewRepository.save(review);
-        System.out.println(reviewRepository.findById(1L));
         return review;
     }
 
-    public void updateCategoryReview(){
+    public void updateCategoryReview(Long categoryId, Long reviewId,
+                                     Review reviewObject){
+        //checks if category exists
+        Category foundCategory = getCategory(categoryId);
 
+        Review foundReview = reviewRepository.findByCategoryIdAndId(
+                        foundCategory.getId(), reviewId);
+        if(foundReview != null){
+                if(foundReview.getTitle().equals(reviewObject.getTitle()))
+                    throw new InformationExistsException("This review already" +
+                            " exists with title " + foundReview.getTitle());
+                else{
+                    foundReview.setCategory(reviewObject.getCategory());
+                    foundReview.setDate(reviewObject.getDate());
+                    foundReview.setTitle(reviewObject.getTitle());
+                    foundReview.setText(reviewObject.getText());
+                    reviewRepository.save(foundReview);
+                }
+        }else{
+            throw new InformationNotFoundException("This review does not " +
+                    "exist");
+        }
     }
 
     public void deleteCategoryReview(){
