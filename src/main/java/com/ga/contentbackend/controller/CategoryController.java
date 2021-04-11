@@ -24,20 +24,17 @@ public class CategoryController {
 
     @GetMapping("/categories")
     public List<Category> getCategories(){
-        categoryService.getCategories();
-        return null;
+       return categoryService.getCategories();
     }
 
     @GetMapping("/categories/{categoryId}")
     public Category getCategory(@PathVariable Long categoryId){
-        categoryService.getCategory(categoryId);
-        return null;
+        return categoryService.getCategory(categoryId);
     }
 
     @PostMapping("/categories/")
-    public Category createCategory(Category category){
-        categoryService.createCategory(category);
-        return null;
+    public Category createCategory(@RequestBody Category category){
+        return categoryService.createCategory(category);
     }
 
     @PutMapping("/categories/{categoryId}")
