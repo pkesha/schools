@@ -40,8 +40,7 @@ public class CategoryController {
     @PutMapping("/categories/{categoryId}")
     public Category updateCategory(@PathVariable Long categoryId,
                                    @RequestBody Category category){
-        categoryService.updateCategory();
-        return null;
+        return categoryService.updateCategory(category, categoryId);
     }
 
     @DeleteMapping("/categories/{categoryId}")

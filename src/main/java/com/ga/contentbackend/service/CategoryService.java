@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -46,8 +47,16 @@ public class CategoryService {
         }
     }
 
-    public void updateCategory(){
+    public Category updateCategory(Category category, Long categoryId){
+        Category dbCategory = categoryRepository.findById(categoryId).get();
 
+        if(dbCategory == null) {
+            throw new InformationNotFoundException("Category id " + categoryId + " does not exist");
+        } else {
+            dbCategory.setTitle(category.getTitle());
+            dbCategory.setDescription(category.getDescription());
+            return categoryRepository.save(dbCategory);
+        }
     }
 
     public void deleteCategory(){
