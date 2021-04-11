@@ -28,11 +28,14 @@ public class Review {
     @JoinColumn(name="category_id")
     private Category category;
 
-    public Review(Long id, String title, String text, LocalDate date) {
+    //added category after One to Many relationship established
+    public Review(Long id, String title, String text, LocalDate date,
+                  Category category) {
         this.id = id;
         this.title = title;
         this.text = text;
         this.date = date;
+        this.category = category;
     }
 
     public Review() {
@@ -68,6 +71,14 @@ public class Review {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
