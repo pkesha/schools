@@ -1,5 +1,6 @@
 package com.ga.contentbackend.service;
 
+import com.ga.contentbackend.exception.InformationNotFoundException;
 import com.ga.contentbackend.model.Category;
 import com.ga.contentbackend.repository.CategoryRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,7 +22,13 @@ public class CategoryService {
     }
 
     public Category getCategory(Long categoryId){
-        return categoryRepository.findById(categoryId).get();
+        try{
+            return categoryRepository.findById(categoryId).get();
+        } catch (Exception e){
+                throw  new InformationNotFoundException("Category with id " +
+                        categoryId + " not found");
+        }
+
     }
 
     public void createCategory(){
