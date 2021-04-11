@@ -1,6 +1,7 @@
 package com.ga.contentbackend.controller;
 
 import com.ga.contentbackend.model.Category;
+import com.ga.contentbackend.model.Review;
 import com.ga.contentbackend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -53,15 +54,13 @@ public class CategoryController {
     /***************Review**************/
 
     @GetMapping("/categories/{categoryId}/reviews")
-    public void getCategoryReviews(){
-
-        categoryService.getCategoryReviews();
-
+    public List<Review> getCategoryReviews(@PathVariable Long categoryId){
+        return categoryService.getCategoryReviews(categoryId);
     }
 
     @GetMapping("/categories/{categoryId}/reviews/{reviewId}")
-    public void getCategoryReview(){
-        categoryService.getCategoryReview();
+    public List<Review> getCategoryReview(){
+        return categoryService.getCategoryReview();
     }
 
     @PostMapping("/categories/{categoryId}/reviews")

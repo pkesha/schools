@@ -3,6 +3,7 @@ package com.ga.contentbackend.model;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 //Entity is each object an entry in the
@@ -23,6 +24,10 @@ public class Category {
 
     @Column
     private String description;
+
+    @OneToMany(mappedBy="category")
+    private List<Review> reviewList;
+
 
     public Category(Long id, String title, String description) {
         this.id = id;

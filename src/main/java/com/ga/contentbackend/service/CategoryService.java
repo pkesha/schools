@@ -3,11 +3,13 @@ package com.ga.contentbackend.service;
 import com.ga.contentbackend.exception.InformationExistsException;
 import com.ga.contentbackend.exception.InformationNotFoundException;
 import com.ga.contentbackend.model.Category;
+import com.ga.contentbackend.model.Review;
 import com.ga.contentbackend.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,8 +74,14 @@ public class CategoryService {
 
     /***************Review**************/
 
-    public void getCategoryReviews(){
+    public List<Review> getCategoryReviews(Long categoryId){
+        //checks if the category exists in the DB
+        Category foundCategory = getCategory(categoryId);
 
+        //check if foundCategory is null
+
+
+        return reviewRepository.findAll();
     }
 
     public void getCategoryReview(){

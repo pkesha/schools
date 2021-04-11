@@ -23,6 +23,11 @@ public class Review {
     @Column
     private LocalDate date;
 
+    //One to Many relationship
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
+
     public Review(Long id, String title, String text, LocalDate date) {
         this.id = id;
         this.title = title;
