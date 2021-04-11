@@ -1,8 +1,10 @@
 package com.ga.contentbackend.service;
 
+import com.ga.contentbackend.exception.InformationExistsException;
 import com.ga.contentbackend.exception.InformationNotFoundException;
 import com.ga.contentbackend.model.Category;
 import com.ga.contentbackend.repository.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import java.util.List;
 @Service
 public class CategoryService {
     private CategoryRepository categoryRepository;
+
+    @Autowired
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
@@ -31,8 +35,15 @@ public class CategoryService {
 
     }
 
-    public void createCategory(){
+    public Category createCategory(Category category){
+        String inputTitle = category.getTitle();
+        String dbTitle = categoryRepository.findByTitle(inputTitle).getTitle();
 
+        if (inputTitle.equals(dbTitle)) {
+            throw new InformationExistsException("Category " + inputTitle + " exists");
+        } else {
+            return categoryRepository.save(category);
+        }
     }
 
     public void updateCategory(){

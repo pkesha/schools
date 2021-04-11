@@ -35,8 +35,8 @@ public class CategoryController {
     }
 
     @PostMapping("/categories/")
-    public Category createCategory(){
-        categoryService.createCategory();
+    public Category createCategory(Category category){
+        categoryService.createCategory(category);
         return null;
     }
 
