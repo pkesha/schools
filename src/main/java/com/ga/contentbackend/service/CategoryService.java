@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 public class CategoryService {
     /***************Categories**************/
 
+
     public void getCategories(){
 
     }

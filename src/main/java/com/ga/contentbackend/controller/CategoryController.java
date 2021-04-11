@@ -1,9 +1,13 @@
 package com.ga.contentbackend.controller;
 
+import com.ga.contentbackend.model.Category;
 import com.ga.contentbackend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping(path="/api")
@@ -18,24 +22,36 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    public void getCategories(){
+    @GetMapping("/categories")
+    public List<Category> getCategories(){
         categoryService.getCategories();
+        return null;
     }
 
-    public void getCategory(){
+    @GetMapping("/categories/{categoryId}")
+    public Category getCategory(@PathVariable Long categoryId){
         categoryService.getCategory();
+        return null;
     }
 
-    public void createCategory(){
+    @PostMapping("/categories/")
+    public Category createCategory(){
         categoryService.createCategory();
+        return null;
     }
 
-    public void updateCategory(){
+    @PutMapping("/categories/{categoryId}")
+    public Category updateCategory(@PathVariable Long categoryId,
+                                   @RequestBody Category category){
         categoryService.updateCategory();
+        return null;
     }
 
-    public void deleteCategory(){
+    @DeleteMapping("/categories/{categoryId}")
+    public void deleteCategory(@PathVariable Long categoryId){
         categoryService.deleteCategory();
+//        HashMap message = new HashMap();
+//        message.put("status", status)
     }
 
     /***************Review**************/
