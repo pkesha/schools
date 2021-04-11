@@ -1,5 +1,7 @@
 package com.ga.contentbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -24,6 +26,7 @@ public class Review {
     private LocalDate date;
 
     //One to Many relationship
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;

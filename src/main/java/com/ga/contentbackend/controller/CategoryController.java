@@ -71,10 +71,11 @@ public class CategoryController {
     }
 
     @PutMapping("/categories/{categoryId}/reviews/{reviewId}")
-    public void updateCategoryReview(@PathVariable Long categoryId,
+    public Review updateCategoryReview(@PathVariable Long categoryId,
                                      @PathVariable Long reviewId,
                                      @RequestBody Review updateReview){
-    categoryService.updateCategoryReview(categoryId, reviewId, updateReview);
+    return categoryService.updateCategoryReview(categoryId, reviewId,
+            updateReview);
     }
 
     @DeleteMapping("/categories/{categoryId}/reviews/{reviewId}")

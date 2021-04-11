@@ -120,7 +120,7 @@ public class CategoryService {
         return review;
     }
 
-    public void updateCategoryReview(Long categoryId, Long reviewId,
+    public Review updateCategoryReview(Long categoryId, Long reviewId,
                                      Review reviewObject){
         //checks if category exists
         Category foundCategory = getCategory(categoryId);
@@ -132,11 +132,11 @@ public class CategoryService {
                     throw new InformationExistsException("This review already" +
                             " exists with title " + foundReview.getTitle());
                 else{
-                    foundReview.setCategory(reviewObject.getCategory());
+                    foundReview.setCategory(foundCategory);
                     foundReview.setDate(reviewObject.getDate());
                     foundReview.setTitle(reviewObject.getTitle());
                     foundReview.setText(reviewObject.getText());
-                    reviewRepository.save(foundReview);
+                    return reviewRepository.save(foundReview);
                 }
         }else{
             throw new InformationNotFoundException("This review does not " +
