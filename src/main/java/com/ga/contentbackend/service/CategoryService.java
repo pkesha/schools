@@ -37,12 +37,12 @@ public class CategoryService {
 
     public Category createCategory(Category category){
         String inputTitle = category.getTitle();
-        String dbTitle = categoryRepository.findByTitle(inputTitle).getTitle();
+        Category dbCategory = categoryRepository.findByTitle(inputTitle);
 
-        if (inputTitle.equals(dbTitle)) {
-            throw new InformationExistsException("Category " + inputTitle + " exists");
-        } else {
+        if(dbCategory.equals(null)) {
             return categoryRepository.save(category);
+        } else {
+            throw new InformationExistsException("Category " + inputTitle + " exists");
         }
     }
 
