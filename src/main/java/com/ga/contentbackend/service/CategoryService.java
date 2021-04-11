@@ -5,6 +5,7 @@ import com.ga.contentbackend.exception.InformationNotFoundException;
 import com.ga.contentbackend.model.Category;
 import com.ga.contentbackend.model.Review;
 import com.ga.contentbackend.repository.CategoryRepository;
+import com.ga.contentbackend.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -16,9 +17,11 @@ import java.util.Optional;
 @Service
 public class CategoryService {
     private CategoryRepository categoryRepository;
+    private ReviewRepository reviewRepository;
 
     @Autowired
-    public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository,
+                           ReviewRepository reviewRepository) {
         this.categoryRepository = categoryRepository;
     }
 
@@ -79,9 +82,7 @@ public class CategoryService {
         Category foundCategory = getCategory(categoryId);
 
         //check if foundCategory is null
-
-
-//        return reviewRepository.;
+        return reviewRepository.findAllByCategoryId(categoryId);
     }
 
     public void getCategoryReview(){
