@@ -29,10 +29,12 @@ public class Category {
     private List<Review> reviewList;
 
 
-    public Category(Long id, String title, String description) {
+    public Category(Long id, String title, String description,
+                    List<Review> reviewList) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.reviewList = reviewList;
     }
 
     //Default case
@@ -57,6 +59,14 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Review> getReviewList() {
+        return reviewList;
+    }
+
+    public void setReviewList(List<Review> reviewList) {
+        this.reviewList = reviewList;
     }
 
     @Override

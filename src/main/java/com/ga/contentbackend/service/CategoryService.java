@@ -81,7 +81,7 @@ public class CategoryService {
         //check if foundCategory is null
 
 
-        return reviewRepository.findAll();
+//        return reviewRepository.;
     }
 
     public void getCategoryReview(){
