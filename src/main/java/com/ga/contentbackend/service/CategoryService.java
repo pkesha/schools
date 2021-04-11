@@ -59,8 +59,15 @@ public class CategoryService {
         }
     }
 
-    public void deleteCategory(){
+    public void deleteCategory(Long categoryId){
+        Category dbCategory = categoryRepository.findById(categoryId).get();
 
+        if(dbCategory == null) {
+            throw new InformationNotFoundException("Category id " + categoryId +
+                    " does not exist");
+        } else {
+            categoryRepository.deleteById(categoryId);
+        }
     }
 
     /***************Review**************/

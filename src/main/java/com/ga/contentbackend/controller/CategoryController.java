@@ -45,7 +45,7 @@ public class CategoryController {
 
     @DeleteMapping("/categories/{categoryId}")
     public void deleteCategory(@PathVariable Long categoryId){
-        categoryService.deleteCategory();
+        categoryService.deleteCategory(categoryId);
 //        HashMap message = new HashMap();
 //        message.put("status", status)
     }
