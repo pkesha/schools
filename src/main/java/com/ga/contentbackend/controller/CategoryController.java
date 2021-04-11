@@ -30,7 +30,7 @@ public class CategoryController {
 
     @GetMapping("/categories/{categoryId}")
     public Category getCategory(@PathVariable Long categoryId){
-        categoryService.getCategory();
+        categoryService.getCategory(categoryId);
         return null;
     }
 
