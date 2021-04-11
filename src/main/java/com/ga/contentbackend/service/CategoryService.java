@@ -144,7 +144,17 @@ public class CategoryService {
         }
     }
 
-    public void deleteCategoryReview(){
+    public void deleteCategoryReview(Long categoryId, Long reviewId){
+
+        //check if exists
+        Review foundReview =
+                reviewRepository.findByCategoryIdAndId(categoryId, reviewId);
+        if(foundReview == null){
+            throw new InformationNotFoundException("This review cannot be " +
+                    "deleted as the ID does not exists ID: " + reviewId);
+        }else{
+            reviewRepository.deleteById(reviewId);
+        }
 
     }
 

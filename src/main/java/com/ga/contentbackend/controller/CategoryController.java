@@ -78,8 +78,9 @@ public class CategoryController {
     }
 
     @DeleteMapping("/categories/{categoryId}/reviews/{reviewId}")
-    public void deleteCategoryReview(){
-        categoryService.deleteCategoryReview();
+    public void deleteCategoryReview(@PathVariable Long categoryId,
+                                     @PathVariable Long reviewId){
+        categoryService.deleteCategoryReview(categoryId, reviewId);
     }
 
 
