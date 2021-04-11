@@ -23,6 +23,7 @@ public class CategoryService {
     public CategoryService(CategoryRepository categoryRepository,
                            ReviewRepository reviewRepository) {
         this.categoryRepository = categoryRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     /***************Categories**************/
@@ -82,7 +83,7 @@ public class CategoryService {
         Category foundCategory = getCategory(categoryId);
 
         //check if foundCategory is null
-        return reviewRepository.findAllByCategoryId(categoryId);
+        return foundCategory.getReviewList();
     }
 
     public Review getCategoryReview(Long categoryId, Long reviewId){
@@ -99,8 +100,27 @@ public class CategoryService {
 
     }
 
-    public void createCategoryReview(){
 
+    public Review createCategoryReview(Long categoryId,
+                                       Review review){
+        Category foundCategory = getCategory(categoryId);
+        review.setCategory(foundCategory);
+
+        if(!foundCategory.getReviewList().isEmpty()){
+            for(Review reviewObject : foundCategory.getReviewList()){
+                if(review.getTitle().equals(reviewObject.getTitle()))
+                {
+                    throw new InformationExistsException("This task exists");
+                }
+            }
+        } else{
+            System.out.println("This task is saved");
+        }
+
+        System.out.println(review);
+        reviewRepository.save(review);
+        System.out.println(reviewRepository.findById(1L));
+        return review;
     }
 
     public void updateCategoryReview(){

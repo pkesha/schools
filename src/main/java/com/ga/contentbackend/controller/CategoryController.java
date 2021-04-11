@@ -33,7 +33,7 @@ public class CategoryController {
         return categoryService.getCategory(categoryId);
     }
 
-    @PostMapping("/categories/")
+    @PostMapping("/categories")
     public Category createCategory(@RequestBody Category category){
         return categoryService.createCategory(category);
     }
@@ -59,13 +59,15 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/{categoryId}/reviews/{reviewId}")
-    public Review getCategoryReview(Long categoryId, Long reviewId){
+    public Review getCategoryReview(@PathVariable Long categoryId,
+                                    @PathVariable Long reviewId){
         return categoryService.getCategoryReview(categoryId, reviewId);
     }
 
     @PostMapping("/categories/{categoryId}/reviews")
-    public void createCategoryReview(){
-        categoryService.createCategoryReview();
+    public Review createCategoryReview(@PathVariable Long categoryId,
+                                     @RequestBody Review review){
+        return categoryService.createCategoryReview(categoryId, review);
     }
 
     @PutMapping("/categories/{categoryId}/reviews/{reviewId}")
