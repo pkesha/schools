@@ -52,22 +52,29 @@ public class CategoryController {
 
     /***************Review**************/
 
+    @GetMapping("/categories/{categoryId}/reviews")
     public void getCategoryReviews(){
+
         categoryService.getCategoryReviews();
+
     }
 
+    @GetMapping("/categories/{categoryId}/reviews/{reviewId}")
     public void getCategoryReview(){
         categoryService.getCategoryReview();
     }
 
+    @PostMapping("/categories/{categoryId}/reviews")
     public void createCategoryReview(){
         categoryService.createCategoryReview();
     }
 
+    @PutMapping("/categories/{categoryId}/reviews/{reviewId}")
     public void updateCategoryReview(){
     categoryService.updateCategoryReview();
     }
 
+    @DeleteMapping("/categories/{categoryId}/reviews/{reviewId}")
     public void deleteCategoryReview(){
         categoryService.deleteCategoryReview();
     }
