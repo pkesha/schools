@@ -28,7 +28,6 @@ public class UserProfile {
         this.lastName = lastName;
 //        this.credentials = credentials;
     }
-
     public UserProfile() {
 
     }
