@@ -29,6 +29,14 @@ public class Comment {
     @JoinColumn(name="review_id")
     private Review review;
 
+    public Review getReview() {
+        return review;
+    }
+
+    public void setReview(Review review) {
+        this.review = review;
+    }
+
     public Comment(Long id, String text, LocalDate date) {
         this.id = id;
         this.text = text;

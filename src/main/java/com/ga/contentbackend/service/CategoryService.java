@@ -182,6 +182,7 @@ public class CategoryService {
 
     public void createCategoryReviewComment(Long categoryId, Long reviewId, Comment comment) {
        Review dbReview = this.getCategoryReview(categoryId, reviewId);
+       comment.setReview(dbReview);
        commentRepository.save(comment);
     }
 
