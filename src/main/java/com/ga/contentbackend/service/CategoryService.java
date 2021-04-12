@@ -186,18 +186,17 @@ public class CategoryService {
        commentRepository.save(comment);
     }
 
-    public void updateCategoryReviewComment(Long categoryId, Long reviewId, Comment commentObject) {
-        Comment comment = this.getCategoryReviewComment(categoryId, reviewId, commentObject.getId());
+    public void updateCategoryReviewComment(Long categoryId, Long reviewId, Comment commentObject, Long commentId) {
+        Comment comment = this.getCategoryReviewComment(categoryId, reviewId, commentId);
         comment.setReview(commentObject.getReview());
         comment.setDate(commentObject.getDate());
         comment.setText(commentObject.getText());
         commentRepository.save(comment);
     }
 
-    public void deleteCategoryReviewComment(Long categoryId, Long reviewId, Comment commentObject) {
-        Comment comment = this.getCategoryReviewComment(categoryId, reviewId, commentObject.getId());
+    public void deleteCategoryReviewComment(Long categoryId, Long reviewId, Long commentId) {
+        Comment comment = this.getCategoryReviewComment(categoryId, reviewId, commentId);
         commentRepository.delete(comment);
-
     }
 
 }
