@@ -20,15 +20,15 @@ import org.springframework.web.context.WebApplicationContext;
 @EnableWebSecurity
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
-    private com.food.demo.security.MyUserDetailsService myUserDetailsService;
+    private MyUserDetailsService myUserDetailsService;
 
     @Autowired
-    public void setMyUserDetailsService(com.food.demo.security.MyUserDetailsService myUserDetailsService) {
+    public void setMyUserDetailsService(MyUserDetailsService myUserDetailsService) {
         this.myUserDetailsService = myUserDetailsService;
     }
 
     @Autowired
-    private com.food.demo.security.JwtRequestFilter jwtRequestFilter;
+    private JwtRequestFilter jwtRequestFilter;
 
     // step1
 
@@ -68,8 +68,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Bean
     @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
-    public com.food.demo.security.MyUserDetails myUserDetails() {
-        return (com.food.demo.security.MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+    public MyUserDetails myUserDetails() {
+        return (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
     }
 }
