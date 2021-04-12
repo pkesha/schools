@@ -86,9 +86,9 @@ public class CategoryController {
 
 
     /***************Comments**************/
-
-    public void getCategoryReviewComments(){
-    categoryService.getCategoryReviewComments();
+    @GetMapping("/categories/{categoryId}/reviews/{reviewId}")
+    public List getCategoryReviewComments(@PathVariable Long categoryId, @PathVariable Long reviewId){
+        return categoryService.getCategoryReviewComments(categoryId, reviewId);
     }
 
     public void getCategoryReviewComment(){

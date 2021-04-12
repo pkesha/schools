@@ -180,11 +180,12 @@ public class CategoryService {
         throw new InformationNotFoundException("Comment " + commentId + " was not found");
     }
 
-    public void createCategoryReviewComment() {
-
+    public void createCategoryReviewComment(Long categoryId, Long reviewId, Comment comment) {
+       Review dbReview = this.getCategoryReview(categoryId, reviewId);
+       commentRepository.save(comment);
     }
 
-    public void updateCategoryReviewComment() {
+    public void updateCategoryReviewCommentReaction() {
 
 
     }
