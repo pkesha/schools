@@ -3,27 +3,29 @@ package com.ga.contentbackend.service;
 import com.ga.contentbackend.exception.InformationExistsException;
 import com.ga.contentbackend.exception.InformationNotFoundException;
 import com.ga.contentbackend.model.Category;
+import com.ga.contentbackend.model.Comment;
 import com.ga.contentbackend.model.Review;
 import com.ga.contentbackend.repository.CategoryRepository;
+import com.ga.contentbackend.repository.CommentRepository;
 import com.ga.contentbackend.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CategoryService {
     private CategoryRepository categoryRepository;
     private ReviewRepository reviewRepository;
+    private CommentRepository commentRepository;
 
     @Autowired
     public CategoryService(CategoryRepository categoryRepository,
-                           ReviewRepository reviewRepository) {
+                           ReviewRepository reviewRepository,
+                           CommentRepository commentRepository) {
         this.categoryRepository = categoryRepository;
         this.reviewRepository = reviewRepository;
+        this.commentRepository = commentRepository;
     }
 
     /***************Categories**************/
@@ -161,24 +163,25 @@ public class CategoryService {
 
     /***************Comments**************/
 
-    public void getCategoryReviewComments(){
+    public List<Comment> getCategoryReviewComments(Long categoryId, Long reviewId) {
+        Review review = this.getCategoryReview(categoryId, reviewId);
+        return review.getCommentList();
+    }
+
+    public void getCategoryReviewComment() {
 
     }
 
-    public void getCategoryReviewComment(){
+    public void createCategoryReviewComment() {
 
     }
 
-    public void createCategoryReviewComment(){
-
-    }
-
-    public void updateCategoryReviewComment(){
+    public void updateCategoryReviewComment() {
 
 
     }
 
-    public void deleteCategoryReviewComment(){
+    public void deleteCategoryReviewComment() {
 
     }
 

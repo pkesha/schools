@@ -32,6 +32,14 @@ public class Review {
     @JoinColumn(name="category_id")
     private Category category;
 
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
     @OneToMany(mappedBy = "review")
     private List<Comment> commentList;
 
