@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -30,6 +31,9 @@ public class Review {
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
+
+    @OneToMany(mappedBy = "review")
+    private List<Comment> commentList;
 
     //added category after One to Many relationship established
     public Review(Long id, String title, String text, LocalDate date,

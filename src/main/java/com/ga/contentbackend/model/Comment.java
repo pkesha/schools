@@ -1,7 +1,11 @@
 package com.ga.contentbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -19,6 +23,11 @@ public class Comment {
 
     @Column
     private LocalDate date;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="review_id")
+    private Review review;
 
     public Comment(Long id, String text, LocalDate date) {
         this.id = id;
