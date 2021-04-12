@@ -94,7 +94,16 @@ Milestone: Spring Security
 BONUS
 Milestone: JWT token implementation
 
-Deploying Heroku
+
+-------
+
+Phase 3 -> 
+Anyone can view all the categories and they are owned by no one and created 
+by everyone.
+
+Making Reviews and Comments publicly viewable by anyone.
+Also making it so that a user is owner of each review / comment
+
 
 Integration Test
 
