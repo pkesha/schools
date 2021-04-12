@@ -106,13 +106,14 @@ public class CategoryController {
         categoryService.createCategoryReviewComment(categoryId, reviewId, comment);
     }
 
-    public void updateCategoryReviewComment(){
-
-
+    public void updateCategoryReviewComment(@PathVariable Long categoryId,
+                                            @PathVariable Long reviewId,
+                                            @RequestBody Comment comment){
+        categoryService.updateCategoryReviewComment(categoryId,
+                reviewId, comment);
     }
 
     public void deleteCategoryReviewComment(){
-    categoryService.deleteCategoryReviewComment();
     }
 
 
