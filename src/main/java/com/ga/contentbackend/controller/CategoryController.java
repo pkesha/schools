@@ -1,6 +1,7 @@
 package com.ga.contentbackend.controller;
 
 import com.ga.contentbackend.model.Category;
+import com.ga.contentbackend.model.Comment;
 import com.ga.contentbackend.model.Review;
 import com.ga.contentbackend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,21 +87,27 @@ public class CategoryController {
 
 
     /***************Comments**************/
-    @GetMapping("/categories/{categoryId}/reviews/{reviewId}")
+    @GetMapping("/categories/{categoryId}/reviews/{reviewId}/comments")
     public List getCategoryReviewComments(@PathVariable Long categoryId, @PathVariable Long reviewId){
         return categoryService.getCategoryReviewComments(categoryId, reviewId);
     }
 
-    public void getCategoryReviewComment(){
-    categoryService.getCategoryReviewComment();
+    @GetMapping("/categories/{categoryId}/reviews/{reviewId}/comments/{commentId}")
+    public void getCategoryReviewComment(@PathVariable Long categoryId,
+                                         @PathVariable Long reviewId,
+                                         @PathVariable Long commentId) {
+        categoryService.getCategoryReviewComment(categoryId, reviewId, commentId);
     }
 
-    public void createCategoryReviewComment(){
-        categoryService.createCategoryReviewComment();
+    @PostMapping("/categories/{categoryId}/reviews/{reviewId}/comments/")
+    public void createCategoryReviewComment(@PathVariable Long categoryId,
+                                            @PathVariable Long reviewId,
+                                            @RequestBody Comment comment){
+        categoryService.createCategoryReviewComment(categoryId, reviewId, comment);
     }
 
     public void updateCategoryReviewComment(){
-    categoryService.updateCategoryReviewComment();
+//    categoryService.updateCategoryReviewComment();
 
     }
 
