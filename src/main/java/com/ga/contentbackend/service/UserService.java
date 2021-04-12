@@ -2,6 +2,8 @@ package com.ga.contentbackend.service;
 
 
 import com.ga.contentbackend.exception.InformationExistsException;
+import com.ga.contentbackend.model.Request.LoginRequest;
+import com.ga.contentbackend.model.Response.LoginResponse;
 import com.ga.contentbackend.repository.UserRepository;
 import com.ga.contentbackend.security.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;

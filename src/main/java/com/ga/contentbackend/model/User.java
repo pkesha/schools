@@ -33,11 +33,11 @@ public class User {
         return id;
     }
 
-    public String getEmail() {
+    public String getEmailAddress() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmailAddress(String email) {
         this.email = email;
     }
 
@@ -48,6 +48,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
 
     @Override
     public String toString() {
