@@ -107,7 +107,7 @@ public class CategoryController {
     }
 
     public void updateCategoryReviewComment(){
-//    categoryService.updateCategoryReviewComment();
+
 
     }
 

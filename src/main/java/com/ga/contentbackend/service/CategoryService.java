@@ -186,9 +186,12 @@ public class CategoryService {
        commentRepository.save(comment);
     }
 
-    public void updateCategoryReviewCommentReaction() {
-
-
+    public void updateCategoryReviewComment(Long categoryId, Long reviewId, Comment commentObject) {
+        Comment comment = this.getCategoryReviewComment(categoryId, reviewId, commentObject.getId());
+        comment.setReview(commentObject.getReview());
+        comment.setDate(commentObject.getDate());
+        comment.setText(commentObject.getText());
+        commentRepository.save(comment);
     }
 
     public void deleteCategoryReviewComment() {
