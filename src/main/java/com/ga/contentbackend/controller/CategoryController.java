@@ -113,7 +113,11 @@ public class CategoryController {
                 reviewId, comment);
     }
 
-    public void deleteCategoryReviewComment(){
+    public void deleteCategoryReviewComment(@PathVariable Long categoryId,
+                                            @PathVariable Long reviewId,
+                                            @RequestBody Comment comment){
+        categoryService.deleteCategoryReviewComment(categoryId,
+                reviewId, comment);
     }
 
 
