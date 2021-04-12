@@ -194,7 +194,9 @@ public class CategoryService {
         commentRepository.save(comment);
     }
 
-    public void deleteCategoryReviewComment() {
+    public void deleteCategoryReviewComment(Long categoryId, Long reviewId, Comment commentObject) {
+        Comment comment = this.getCategoryReviewComment(categoryId, reviewId, commentObject.getId());
+        commentRepository.delete(comment);
 
     }
 
