@@ -106,6 +106,7 @@ public class CategoryController {
         categoryService.createCategoryReviewComment(categoryId, reviewId, comment);
     }
 
+    @PutMapping("/categories/{categoryId}/reviews/{reviewId}/comments/{commentId}")
     public void updateCategoryReviewComment(@PathVariable Long categoryId,
                                             @PathVariable Long reviewId,
                                             @RequestBody Comment comment){
@@ -113,6 +114,7 @@ public class CategoryController {
                 reviewId, comment);
     }
 
+    @DeleteMapping("/categories/{categoryId}/reviews/{reviewId}/comments/{commentId}")
     public void deleteCategoryReviewComment(@PathVariable Long categoryId,
                                             @PathVariable Long reviewId,
                                             @RequestBody Comment comment){
