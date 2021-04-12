@@ -168,8 +168,16 @@ public class CategoryService {
         return review.getCommentList();
     }
 
-    public void getCategoryReviewComment() {
+    public Comment getCategoryReviewComment(Long categoryId, Long reviewId, Long commentId) {
+        Review review = this.getCategoryReview(categoryId, reviewId);
 
+        for(Comment comment : review.getCommentList()) {
+            if(comment.getId().equals(commentId)){
+                return comment;
+            }
+        }
+
+        throw new InformationNotFoundException("Comment " + commentId + " was not found");
     }
 
     public void createCategoryReviewComment() {
