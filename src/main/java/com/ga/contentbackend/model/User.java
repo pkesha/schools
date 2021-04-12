@@ -13,16 +13,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //Makes sure every email entry in the column is unique
+    //Makes sure every emailAddress entry in the column is unique
     @Column(unique = true)
-    private String email;
+    private String emailAddress;
 
     @Column
     private String password;
 
-    public User(Long id, String email, String password) {
+    public User(Long id, String emailAddress, String password) {
         this.id = id;
-        this.email = email;
+        this.emailAddress = emailAddress;
         this.password = password;
     }
 
@@ -34,11 +34,11 @@ public class User {
     }
 
     public String getEmailAddress() {
-        return email;
+        return emailAddress;
     }
 
-    public void setEmailAddress(String email) {
-        this.email = email;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public String getPassword() {
@@ -54,7 +54,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", email='" + email + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
