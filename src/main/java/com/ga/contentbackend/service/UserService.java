@@ -1,6 +1,7 @@
 package com.ga.contentbackend.service;
 
 
+import com.ga.contentbackend.exception.InformationExistsException;
 import com.ga.contentbackend.repository.UserRepository;
 import com.ga.contentbackend.security.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class UserService {
             userObject.setPassword(passwordEncoder.encode(userObject.getPassword()));
             return userRepository.save(userObject);
         } else {
-            throw new InformationExistException("user with email address " + userObject.getEmailAddress() +
+            throw new InformationExistsException("user with email address " + userObject.getEmailAddress() +
                     " already exists");
         }
     }
