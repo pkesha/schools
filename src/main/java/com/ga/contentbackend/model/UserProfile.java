@@ -1,5 +1,7 @@
 package com.ga.contentbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class UserProfile {
     @Column
     private String lastName;
 
+    @JsonIgnore
     @OneToOne(mappedBy="userProfile")
     private User user;
 

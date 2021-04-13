@@ -37,6 +37,7 @@ public class Review {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "review")
     private List<Comment> commentList;
 

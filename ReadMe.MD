@@ -106,14 +106,9 @@ Also making it so that a user is owner of each review / comment
 
 Unit Testing 
 
-Integration Test
 
 
 
 
-
-
-Exception Handling with Spring native features:
-https://www.baeldung.com/exception-handling-for-rest-with-spring
 
 

@@ -26,6 +26,7 @@ public class Category {
     @Column
     private String description;
 
+    @JsonIgnore
     @OneToMany(mappedBy="category")
     private List<Review> reviewList;
 

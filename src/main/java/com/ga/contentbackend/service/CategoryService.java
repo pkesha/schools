@@ -53,6 +53,7 @@ public class CategoryService {
         Category dbCategory = categoryRepository.findByTitleAndUserId(inputTitle, getUserDetails().getId());
 
         if(dbCategory == null) {
+            category.setUser(getUserDetails());
             return categoryRepository.save(category);
         } else {
             throw new InformationExistsException("Category " + inputTitle + " exists");
@@ -186,11 +187,12 @@ public class CategoryService {
         throw new InformationNotFoundException("Comment " + commentId + " was not found");
     }
 
-    public void createCategoryReviewComment(Long categoryId, Long reviewId, Comment comment) {
+    public Comment createCategoryReviewComment(Long categoryId, Long reviewId,
+                                         Comment comment) {
        Review dbReview = this.getCategoryReview(categoryId, reviewId);
        comment.setReview(dbReview);
        comment.setUser(getUserDetails());
-       commentRepository.save(comment);
+       return commentRepository.save(comment);
     }
 
     public void updateCategoryReviewComment(Long categoryId, Long reviewId, Comment commentObject, Long commentId) {

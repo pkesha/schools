@@ -102,11 +102,12 @@ public class CategoryController {
         return categoryService.getCategoryReviewComment(categoryId, reviewId, commentId);
     }
 
-    @PostMapping("/categories/{categoryId}/reviews/{reviewId}/comments/")
-    public void createCategoryReviewComment(@PathVariable Long categoryId,
+    @PostMapping("/categories/{categoryId}/reviews/{reviewId}/comments")
+    public Comment createCategoryReviewComment(@PathVariable Long categoryId,
                                             @PathVariable Long reviewId,
                                             @RequestBody Comment comment){
-        categoryService.createCategoryReviewComment(categoryId, reviewId, comment);
+        return categoryService.createCategoryReviewComment(categoryId, reviewId,
+                comment);
     }
 
     @PutMapping("/categories/{categoryId}/reviews/{reviewId}/comments/{commentId}")

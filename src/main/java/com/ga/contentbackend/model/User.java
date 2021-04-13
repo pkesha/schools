@@ -2,6 +2,8 @@ package com.ga.contentbackend.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,6 +30,7 @@ public class User {
     private UserProfile userProfile;
 
     @OneToMany(mappedBy = "user")
+    @LazyCollection(value = LazyCollectionOption.FALSE)
     private List<Category> categoryList;
 
     @OneToMany(mappedBy = "user")
