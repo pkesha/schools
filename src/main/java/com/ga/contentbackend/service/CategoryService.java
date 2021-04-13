@@ -35,7 +35,7 @@ public class CategoryService {
     /***************Categories**************/
 
     public List<Category> getCategories(){
-        return categoryRepository.findAll();
+        return categoryRepository.findAllByUserId(getUserDetails().getId());
     }
 
     public Category getCategory(Long categoryId){
