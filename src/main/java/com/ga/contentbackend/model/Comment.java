@@ -29,13 +29,10 @@ public class Comment {
     @JoinColumn(name="review_id")
     private Review review;
 
-    public Review getReview() {
-        return review;
-    }
-
-    public void setReview(Review review) {
-        this.review = review;
-    }
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Comment(Long id, String text, LocalDate date) {
         this.id = id;
@@ -44,6 +41,26 @@ public class Comment {
     }
 
     public Comment() {
+    }
+
+    public Review getReview() {
+        return review;
+    }
+
+    public void setReview(Review review) {
+        this.review = review;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {

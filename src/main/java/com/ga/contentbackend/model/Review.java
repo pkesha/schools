@@ -32,13 +32,10 @@ public class Review {
     @JoinColumn(name="category_id")
     private Category category;
 
-    public List<Comment> getCommentList() {
-        return commentList;
-    }
-
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
-    }
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OneToMany(mappedBy = "review")
     private List<Comment> commentList;
@@ -54,6 +51,22 @@ public class Review {
     }
 
     public Review() {
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 
     public Long getId() {

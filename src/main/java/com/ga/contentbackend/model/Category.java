@@ -1,5 +1,6 @@
 package com.ga.contentbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
@@ -28,6 +29,10 @@ public class Category {
     @OneToMany(mappedBy="category")
     private List<Review> reviewList;
 
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Category(Long id, String title, String description,
                     List<Review> reviewList) {
@@ -39,6 +44,14 @@ public class Category {
 
     //Default case
     public Category() {
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {
