@@ -126,10 +126,4 @@ public class CategoryController {
                 reviewId, commentId);
     }
 
-    private User getUserDetails() {
-        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
-        return userDetails.getUser();
-    }
-
 }
