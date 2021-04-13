@@ -3,9 +3,12 @@ package com.ga.contentbackend.controller;
 import com.ga.contentbackend.model.Category;
 import com.ga.contentbackend.model.Comment;
 import com.ga.contentbackend.model.Review;
+import com.ga.contentbackend.model.User;
+import com.ga.contentbackend.security.MyUserDetails;
 import com.ga.contentbackend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -123,5 +126,10 @@ public class CategoryController {
                 reviewId, commentId);
     }
 
+    private User getUserDetails() {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        return userDetails.getUser();
+    }
 
 }

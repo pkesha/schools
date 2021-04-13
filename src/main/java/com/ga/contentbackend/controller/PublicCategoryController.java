@@ -4,7 +4,6 @@ package com.ga.contentbackend.controller;
 import com.ga.contentbackend.model.Category;
 import com.ga.contentbackend.model.Comment;
 import com.ga.contentbackend.model.Review;
-import com.ga.contentbackend.service.CategoryService;
 import com.ga.contentbackend.service.PublicCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
