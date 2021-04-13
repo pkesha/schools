@@ -4,6 +4,7 @@ package com.ga.contentbackend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -26,6 +27,17 @@ public class User {
     @JoinColumn(name="user_profile_id", referencedColumnName = "id")
     private UserProfile userProfile;
 
+    @OneToMany(mappedBy = "user")
+    private List<Category> categoryList;
+
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviewList;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> commentList;
+
+
+
 
 
     public User(Long id, String emailAddress, String password) {
@@ -35,6 +47,30 @@ public class User {
     }
 
     public User() {
+    }
+
+    public List<Category> getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
+    }
+
+    public List<Review> getReviewList() {
+        return reviewList;
+    }
+
+    public void setReviewList(List<Review> reviewList) {
+        this.reviewList = reviewList;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 
     public Long getId() {

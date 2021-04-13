@@ -5,10 +5,13 @@ import com.ga.contentbackend.exception.InformationNotFoundException;
 import com.ga.contentbackend.model.Category;
 import com.ga.contentbackend.model.Comment;
 import com.ga.contentbackend.model.Review;
+import com.ga.contentbackend.model.User;
 import com.ga.contentbackend.repository.CategoryRepository;
 import com.ga.contentbackend.repository.CommentRepository;
 import com.ga.contentbackend.repository.ReviewRepository;
+import com.ga.contentbackend.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -196,6 +199,12 @@ public class CategoryService {
     public void deleteCategoryReviewComment(Long categoryId, Long reviewId, Long commentId) {
         Comment comment = this.getCategoryReviewComment(categoryId, reviewId, commentId);
         commentRepository.delete(comment);
+    }
+
+    private User getUserDetails() {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        return userDetails.getUser();
     }
 
 }
