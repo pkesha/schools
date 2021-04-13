@@ -12,6 +12,7 @@ import com.ga.contentbackend.repository.ReviewRepository;
 import com.ga.contentbackend.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class CategoryService {
 
     public Category getCategory(Long categoryId){
         try{
-            return categoryRepository.findById(categoryId).get();
+            return categoryRepository.findByIdAndUserId(categoryId, getUserDetails().getId()) ;
         } catch (Exception e){
                 throw  new InformationNotFoundException("Category with id " +
                         categoryId + " not found");
@@ -49,7 +50,7 @@ public class CategoryService {
 
     public Category createCategory(Category category){
         String inputTitle = category.getTitle();
-        Category dbCategory = categoryRepository.findByTitle(inputTitle);
+        Category dbCategory = categoryRepository.findByTitleAndUserId(inputTitle, getUserDetails().getId());
 
         if(dbCategory == null) {
             return categoryRepository.save(category);
@@ -59,7 +60,7 @@ public class CategoryService {
     }
 
     public Category updateCategory(Category category, Long categoryId){
-        Category dbCategory = categoryRepository.findById(categoryId).get();
+        Category dbCategory = categoryRepository.findByIdAndUserId(categoryId, getUserDetails().getId());
 
         if(dbCategory == null) {
             throw new InformationNotFoundException("Category id " + categoryId + " does not exist");
@@ -71,7 +72,7 @@ public class CategoryService {
     }
 
     public void deleteCategory(Long categoryId){
-        Category dbCategory = categoryRepository.findById(categoryId).get();
+        Category dbCategory = categoryRepository.findByIdAndUserId(categoryId, getUserDetails().getId());
 
         if(dbCategory == null) {
             throw new InformationNotFoundException("Category id " + categoryId +
@@ -93,10 +94,10 @@ public class CategoryService {
 
     public Review getCategoryReview(Long categoryId, Long reviewId){
         //checks if the category exists in the DB
-        Category foundCategory = getCategory(categoryId);
+        Category foundCategory = this.getCategory(categoryId);
 
         Review foundReview =
-                reviewRepository.findByCategoryIdAndId(categoryId, reviewId);
+                reviewRepository.findByCategoryIdAndIdAndUserId(categoryId, reviewId, getUserDetails().getId());
         if(foundReview == null){
             throw new InformationNotFoundException("Review with ID " + reviewId + "not found");
         } else{
@@ -104,7 +105,6 @@ public class CategoryService {
         }
 
     }
-
 
     public Review createCategoryReview(Long categoryId,
                                        Review review){
@@ -121,6 +121,7 @@ public class CategoryService {
         } else{
             System.out.println("This task is saved");
         }
+        review.setUser(getUserDetails());
         reviewRepository.save(review);
         return review;
     }
@@ -130,8 +131,8 @@ public class CategoryService {
         //checks if category exists
         Category foundCategory = getCategory(categoryId);
 
-        Review foundReview = reviewRepository.findByCategoryIdAndId(
-                        foundCategory.getId(), reviewId);
+        Review foundReview = reviewRepository.findByCategoryIdAndIdAndUserId(
+                        foundCategory.getId(), reviewId, getUserDetails().getId());
         if(foundReview != null){
                 if(foundReview.getTitle().equals(reviewObject.getTitle()))
                     throw new InformationExistsException("This review already" +
@@ -141,6 +142,7 @@ public class CategoryService {
                     foundReview.setDate(reviewObject.getDate());
                     foundReview.setTitle(reviewObject.getTitle());
                     foundReview.setText(reviewObject.getText());
+                    foundReview.setUser(getUserDetails());
                     return reviewRepository.save(foundReview);
                 }
         }else{
@@ -153,7 +155,8 @@ public class CategoryService {
 
         //check if exists
         Review foundReview =
-                reviewRepository.findByCategoryIdAndId(categoryId, reviewId);
+                reviewRepository.findByCategoryIdAndIdAndUserId(categoryId, reviewId,
+                        getUserDetails().getId());
         if(foundReview == null){
             throw new InformationNotFoundException("This review cannot be " +
                     "deleted as the ID does not exists ID: " + reviewId);
@@ -186,6 +189,7 @@ public class CategoryService {
     public void createCategoryReviewComment(Long categoryId, Long reviewId, Comment comment) {
        Review dbReview = this.getCategoryReview(categoryId, reviewId);
        comment.setReview(dbReview);
+       comment.setUser(getUserDetails());
        commentRepository.save(comment);
     }
 
@@ -193,6 +197,7 @@ public class CategoryService {
         Comment comment = this.getCategoryReviewComment(categoryId, reviewId, commentId);
         comment.setDate(commentObject.getDate());
         comment.setText(commentObject.getText());
+        comment.setUser(getUserDetails());
         commentRepository.save(comment);
     }
 
