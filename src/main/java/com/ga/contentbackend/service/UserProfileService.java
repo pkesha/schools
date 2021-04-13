@@ -1,5 +1,6 @@
 package com.ga.contentbackend.service;
 
+import com.ga.contentbackend.exception.InformationExistsException;
 import com.ga.contentbackend.model.UserProfile;
 import com.ga.contentbackend.repository.UserProfileRepository;
 import com.ga.contentbackend.repository.UserRepository;
@@ -26,9 +27,13 @@ public class UserProfileService {
                 (MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(myUserDetails.getUser().getId());
         userProfile.setUser(myUserDetails.getUser());
-        UserProfile foundUserProfile = userProfileRepository.findBy
-        if()
+        UserProfile foundUserProfile =
+                userProfileRepository.findByFirstNameAndLastName(userProfile.getFirstName(), userProfile.getLastName());
 
-        return userProfileRepository.save(userProfile);
+        if(foundUserProfile != null){
+            throw new InformationExistsException("This User Profile exists!");
+        }else{
+            return userProfileRepository.save(userProfile);
+        }
     }
 }
