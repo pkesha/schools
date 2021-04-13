@@ -1,6 +1,8 @@
 package com.ga.contentbackend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,10 @@ public class User {
 
     @Column
     private String password;
+
+    @OneToOne
+    @JoinColumn(name="user_profile_id", referencedColumnName = "id")
+    private UserProfile userProfile;
 
     public User(Long id, String emailAddress, String password) {
         this.id = id;

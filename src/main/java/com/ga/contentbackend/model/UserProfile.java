@@ -19,6 +19,9 @@ public class UserProfile {
     @Column
     private String lastName;
 
+    @OneToOne(mappedBy="userProfile")
+    private User user;
+
 //    @Column
 //    private List<String> credentials;
 
