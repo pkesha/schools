@@ -41,6 +41,30 @@ public class PublicCategoryService {
 
     }
 
+    /***************Review**************/
+
+    public List<Review> getCategoryReviews(Long categoryId){
+        //checks if the category exists in the DB
+        Category foundCategory = getCategory(categoryId);
+
+        //check if foundCategory is null
+        return foundCategory.getReviewList();
+    }
+
+    public Review getCategoryReview(Long categoryId, Long reviewId){
+        //checks if the category exists in the DB
+        Category foundCategory = getCategory(categoryId);
+
+        Review foundReview =
+                reviewRepository.findByCategoryIdAndId(categoryId, reviewId);
+        if(foundReview == null){
+            throw new InformationNotFoundException("Review with ID " + reviewId + "not found");
+        } else{
+            return foundReview;
+        }
+
+    }
+
     /***************Comments**************/
     public List<Comment> getCategoryReviewComments(Long categoryId, Long reviewId) {
         Review review = this.getCategoryReview(categoryId, reviewId);
