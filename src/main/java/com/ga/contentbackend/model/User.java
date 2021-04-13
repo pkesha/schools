@@ -26,6 +26,8 @@ public class User {
     @JoinColumn(name="user_profile_id", referencedColumnName = "id")
     private UserProfile userProfile;
 
+
+
     public User(Long id, String emailAddress, String password) {
         this.id = id;
         this.emailAddress = emailAddress;
@@ -56,6 +58,14 @@ public class User {
     }
 
 
+    /**User Profile one ot one binding*/
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
     @Override
     public String toString() {
         return "User{" +

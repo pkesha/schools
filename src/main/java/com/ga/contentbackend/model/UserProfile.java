@@ -22,6 +22,7 @@ public class UserProfile {
     @OneToOne(mappedBy="userProfile")
     private User user;
 
+
 //    @Column
 //    private List<String> credentials;
 
@@ -57,6 +58,15 @@ public class UserProfile {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    /**User One to One binding**/
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 //
 //    public List<String> getCredentials() {
