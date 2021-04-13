@@ -26,6 +26,9 @@ public class UserProfileService {
                 (MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(myUserDetails.getUser().getId());
         userProfile.setUser(myUserDetails.getUser());
+        UserProfile foundUserProfile = userProfileRepository.findBy
+        if()
+
         return userProfileRepository.save(userProfile);
     }
 }
