@@ -20,7 +20,7 @@ public class UserProfileService {
         this.userRepository = userRepository;
     }
 
-    public UserProfile createUserProfile(Long userId, UserProfile userProfile){
+    public UserProfile createUserProfile(UserProfile userProfile){
 
         MyUserDetails myUserDetails =
                 (MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
