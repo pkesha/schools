@@ -2,6 +2,8 @@ package com.ga.contentbackend.service;
 
 import com.ga.contentbackend.exception.InformationNotFoundException;
 import com.ga.contentbackend.model.Category;
+import com.ga.contentbackend.model.Comment;
+import com.ga.contentbackend.model.Review;
 import com.ga.contentbackend.repository.CategoryRepository;
 import com.ga.contentbackend.repository.CommentRepository;
 import com.ga.contentbackend.repository.ReviewRepository;
@@ -38,5 +40,23 @@ public class PublicCategoryService {
         }
 
     }
+
+    /***************Comments**************/
+    public List<Comment> getCategoryReviewComments(Long categoryId, Long reviewId) {
+        Review review = this.getCategoryReview(categoryId, reviewId);
+        return review.getCommentList();
+    }
+
+    public Comment getCategoryReviewComment(Long categoryId, Long reviewId, Long commentId) {
+        Review review = this.getCategoryReview(categoryId, reviewId);
+
+        for (Comment comment : review.getCommentList()) {
+            if (comment.getId().equals(commentId)) {
+                return comment;
+            }
+        }
+        throw new InformationNotFoundException("Comment " + commentId + " was not found");
+    }
+
 
 }
