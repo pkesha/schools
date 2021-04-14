@@ -141,7 +141,7 @@ public class CategoryService {
     }
 
     public Comment getCategoryReviewComment(Long categoryId, Long reviewId, Long commentId) {
-        Comment databaseComment = commentRepository.findByCategoryIdAAndReviewIdAndIdAndUserId(
+        Comment databaseComment = commentRepository.findByCategoryIdAndReviewIdAndIdAndUserId(
                 categoryId,
                 reviewId,
                 commentId,
