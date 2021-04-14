@@ -1,5 +1,6 @@
 package com.ga.contentbackend.controller;
 
+import ch.qos.logback.core.rolling.helper.RollingCalendar;
 import com.ga.contentbackend.model.Category;
 import com.ga.contentbackend.model.Comment;
 import com.ga.contentbackend.model.Review;
@@ -7,6 +8,7 @@ import com.ga.contentbackend.model.User;
 import com.ga.contentbackend.security.MyUserDetails;
 import com.ga.contentbackend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,7 @@ public class CategoryController {
     /***************Categories**************/
 
 
-    CategoryService categoryService;
+    private final CategoryService categoryService;
 
     @Autowired
     public CategoryController(CategoryService categoryService){
@@ -38,8 +40,9 @@ public class CategoryController {
     }
 
     @PostMapping("/categories")
-    public Category createCategory(@RequestBody Category category){
-        return categoryService.createCategory(category);
+    public ResponseEntity<Category> createCategory(@RequestBody Category category){
+        return new ResponseEntity<>(categoryService.createCategory(category),
+                HttpStatus.CREATED);
     }
 
     @PutMapping("/categories/{categoryId}")

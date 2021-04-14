@@ -7,6 +7,7 @@ import com.ga.contentbackend.model.Category;
 import com.ga.contentbackend.repository.CategoryRepository;
 import com.ga.contentbackend.security.WithCustomUser;
 import com.ga.contentbackend.service.CategoryService;
+import jdk.jfr.ContentType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -24,11 +25,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.ResultHandler;
+import org.springframework.test.web.servlet.*;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
@@ -87,7 +86,6 @@ class CategoryControllerTest {
 
         String uri = "/api/categories";
 
-
         //when -> here we call the categoryService method underTest and state
         // the expected output
         Mockito.when(
@@ -99,7 +97,11 @@ class CategoryControllerTest {
                 MediaType.APPLICATION_JSON);
 
         //Returns a JSON response
-        MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+        MvcResult mvcResult = mockMvc.perform(requestBuilder)
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.content().json(mapToJson(category)))
+                .andReturn();
 
         System.out.println(mvcResult.getResponse());
 
@@ -111,7 +113,35 @@ class CategoryControllerTest {
     }
 
     @Test
-    void createCategory() {
+    @WithCustomUser(username="amuniz@gmail.com")
+    void createCategory() throws Exception {
+        //Given
+        Category category = new Category(1L,"Course","Description",null);
+        String uri = "/api/categories";
+        //when -> here we call the categoryService method underTest and state
+        // the expected output
+        Mockito.when(
+                categoryService.createCategory(category)).thenReturn(category);
+
+        //Then here we are specifying the end point under test
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+                "/api/categories").contentType(MediaType.APPLICATION_JSON).content(mapToJson(category));
+
+        //Returns a JSON response
+        MvcResult mvcResult =
+                mockMvc.perform(MockMvcRequestBuilders.post("/api/categories")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .content(mapToJson(category)))
+                        .andExpect(MockMvcResultMatchers.status().isCreated())
+                        .andReturn();
+
+        System.out.println(mvcResult.getResponse());
+
+        //the -> using a utility method to map the Json to the cateogoryList
+        String expected = mapToJson(category);
+
+    //    assertEquals(expected, mvcResult.getResponse());
     }
 
     @Test
