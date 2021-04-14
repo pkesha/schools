@@ -1,12 +1,9 @@
 package com.ga.contentbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.LazyCollection;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
-
 
 @Entity
 @Table(name = "comments")
@@ -34,13 +31,12 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Comment(Long id, String text, LocalDate date) {
-        this.id = id;
-        this.text = text;
-        this.date = date;
+    public Comment() {
+
     }
 
-    public Comment() {
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Review getReview() {
@@ -49,10 +45,6 @@ public class Comment {
 
     public void setReview(Review review) {
         this.review = review;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public User getUser() {

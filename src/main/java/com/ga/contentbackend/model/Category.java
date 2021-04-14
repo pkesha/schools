@@ -1,7 +1,6 @@
 package com.ga.contentbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 import java.util.List;
@@ -45,6 +44,15 @@ public class Category {
 
     //Default case
     public Category() {
+
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setReviewList(List<Review> reviewList) {
+        this.reviewList = reviewList;
     }
 
     public User getUser() {
@@ -77,10 +85,6 @@ public class Category {
 
     public List<Review> getReviewList() {
         return reviewList;
-    }
-
-    public void setReviewList(List<Review> reviewList) {
-        this.reviewList = reviewList;
     }
 
     @Override

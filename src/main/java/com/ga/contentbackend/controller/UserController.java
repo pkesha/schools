@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth/users")
 public class UserController {
 
-    private UserService userService;
-    private UserProfileService userProfileService;
+    private final UserService userService;
+    private final UserProfileService userProfileService;
 
     public UserController(UserService userService,
                           UserProfileService userProfileService){

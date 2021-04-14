@@ -4,16 +4,13 @@ import ch.qos.logback.core.rolling.helper.RollingCalendar;
 import com.ga.contentbackend.model.Category;
 import com.ga.contentbackend.model.Comment;
 import com.ga.contentbackend.model.Review;
-import com.ga.contentbackend.model.User;
-import com.ga.contentbackend.security.MyUserDetails;
 import com.ga.contentbackend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -94,7 +91,7 @@ public class CategoryController {
 
     /***************Comments**************/
     @GetMapping("/categories/{categoryId}/reviews/{reviewId}/comments")
-    public List getCategoryReviewComments(@PathVariable Long categoryId, @PathVariable Long reviewId){
+    public List<Comment> getCategoryReviewComments(@PathVariable Long categoryId, @PathVariable Long reviewId){
         return categoryService.getCategoryReviewComments(categoryId, reviewId);
     }
 
