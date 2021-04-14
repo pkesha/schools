@@ -155,9 +155,16 @@ public class CategoryService {
         }
     }
 
-    public Comment createCategoryReviewComment(Long categoryId, Long reviewId,
-                                               Comment userComment) {
+    public Comment createCategoryReviewComment(Long categoryId, Long reviewId, Comment userComment) {
         Review databaseReview = this.getCategoryReview(categoryId, reviewId);
+        String userCommentText = userComment.getText();
+
+        databaseReview.getCommentList().forEach(comment -> {
+            if (userCommentText.equals(comment.getText())) {
+                throw new InformationExistsException("Review with title " + userCommentText + " exists");
+            }
+        });
+
         userComment.setReview(databaseReview);
         userComment.setUser(getUser());
         return commentRepository.save(userComment);
