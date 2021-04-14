@@ -32,6 +32,11 @@ public class Comment {
     private User user;
 
     public Comment() {
+
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Review getReview() {

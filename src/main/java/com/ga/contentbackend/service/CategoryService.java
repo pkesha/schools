@@ -12,20 +12,18 @@ import com.ga.contentbackend.repository.ReviewRepository;
 import com.ga.contentbackend.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class CategoryService {
-    private CategoryRepository categoryRepository;
-    private ReviewRepository reviewRepository;
-    private CommentRepository commentRepository;
+    private final CategoryRepository categoryRepository;
+    private final ReviewRepository reviewRepository;
+    private final CommentRepository commentRepository;
 
     @Autowired
-    public CategoryService(CategoryRepository categoryRepository,
-                           ReviewRepository reviewRepository,
+    public CategoryService(CategoryRepository categoryRepository, ReviewRepository reviewRepository,
                            CommentRepository commentRepository) {
         this.categoryRepository = categoryRepository;
         this.reviewRepository = reviewRepository;
@@ -35,86 +33,72 @@ public class CategoryService {
     /***************Categories**************/
 
     public List<Category> getCategories(){
-        return categoryRepository.findAllByUserId(getUserDetails().getId());
+        return categoryRepository.findAllByUserId(getUser().getId());
     }
 
     public Category getCategory(Long categoryId){
         try{
-            return categoryRepository.findByIdAndUserId(categoryId, getUserDetails().getId()) ;
+            return categoryRepository.findByIdAndUserId(categoryId, getUser().getId()) ;
         } catch (Exception e){
-                throw  new InformationNotFoundException("Category with id " +
-                        categoryId + " not found");
+                throw  new InformationNotFoundException("Category with id " + categoryId + " not found");
         }
-
     }
 
-    public Category createCategory(Category category){
-        String inputTitle = category.getTitle();
-        Category dbCategory = categoryRepository.findByTitleAndUserId(inputTitle, getUserDetails().getId());
+    public Category createCategory(Category userCategory){
+        String inputTitle = userCategory.getTitle();
+        Category databaseCategory = categoryRepository.findByTitleAndUserId(inputTitle, getUser().getId());
 
-        if(dbCategory == null) {
-            category.setUser(getUserDetails());
-            return categoryRepository.save(category);
+        if(databaseCategory == null) {
+            userCategory.setUser(getUser());
+            return categoryRepository.save(userCategory);
         } else {
             throw new InformationExistsException("Category " + inputTitle + " exists");
         }
     }
 
-    public Category updateCategory(Category category, Long categoryId){
-        Category dbCategory = categoryRepository.findByIdAndUserId(categoryId, getUserDetails().getId());
+    public Category updateCategory(Category userCategory, Long categoryId){
+        Category databaseCategory = this.getCategory(categoryId);
 
-        if(dbCategory == null) {
-            throw new InformationNotFoundException("Category id " + categoryId + " does not exist");
-        } else {
-            dbCategory.setTitle(category.getTitle());
-            dbCategory.setDescription(category.getDescription());
-            return categoryRepository.save(dbCategory);
-        }
+        databaseCategory.setTitle(userCategory.getTitle());
+        databaseCategory.setDescription(userCategory.getDescription());
+
+        return categoryRepository.save(databaseCategory);
+
     }
 
     public void deleteCategory(Long categoryId){
-        Category dbCategory = categoryRepository.findByIdAndUserId(categoryId, getUserDetails().getId());
-
-        if(dbCategory == null) {
-            throw new InformationNotFoundException("Category id " + categoryId +
-                    " does not exist");
-        } else {
-            categoryRepository.deleteById(categoryId);
-        }
+        //Checking for exceptions
+        this.getCategory(categoryId);
+        categoryRepository.deleteById(categoryId);
     }
 
     /***************Review**************/
-
     public List<Review> getCategoryReviews(Long categoryId){
         //checks if the category exists in the DB
-        Category foundCategory = getCategory(categoryId);
-
+        Category databaseCategory = this.getCategory(categoryId);
         //check if foundCategory is null
-        return foundCategory.getReviewList();
+        return databaseCategory.getReviewList();
     }
 
     public Review getCategoryReview(Long categoryId, Long reviewId){
         //checks if the category exists in the DB
-        Category foundCategory = this.getCategory(categoryId);
-
-        Review foundReview =
-                reviewRepository.findByCategoryIdAndIdAndUserId(categoryId, reviewId, getUserDetails().getId());
-        if(foundReview == null){
+        Review databaseReview = reviewRepository
+                .findByCategoryIdAndIdAndUserId(categoryId, reviewId, getUser().getId());
+        if(databaseReview == null){
             throw new InformationNotFoundException("Review with ID " + reviewId + "not found");
         } else{
-            return foundReview;
+            return databaseReview;
         }
 
     }
 
-    public Review createCategoryReview(Long categoryId,
-                                       Review review){
-        Category foundCategory = getCategory(categoryId);
-        review.setCategory(foundCategory);
+    public Review createCategoryReview(Long categoryId, Review userReview){
+        Category databaseCategory = getCategory(categoryId);
+        userReview.setCategory(databaseCategory);
 
-        if(!foundCategory.getReviewList().isEmpty()){
-            for(Review reviewObject : foundCategory.getReviewList()){
-                if(review.getTitle().equals(reviewObject.getTitle()))
+        if(!databaseCategory.getReviewList().isEmpty()){
+            for(Review reviewObject : databaseCategory.getReviewList()){
+                if(userReview.getTitle().equals(reviewObject.getTitle()))
                 {
                     throw new InformationExistsException("This task exists");
                 }
@@ -122,29 +106,28 @@ public class CategoryService {
         } else{
             System.out.println("This task is saved");
         }
-        review.setUser(getUserDetails());
-        reviewRepository.save(review);
-        return review;
+        userReview.setUser(getUser());
+        reviewRepository.save(userReview);
+        return userReview;
     }
 
     public Review updateCategoryReview(Long categoryId, Long reviewId,
-                                     Review reviewObject){
+                                     Review userReview){
         //checks if category exists
-        Category foundCategory = getCategory(categoryId);
+        Category databaseCategory = getCategory(categoryId);
 
-        Review foundReview = reviewRepository.findByCategoryIdAndIdAndUserId(
-                        foundCategory.getId(), reviewId, getUserDetails().getId());
-        if(foundReview != null){
-                if(foundReview.getTitle().equals(reviewObject.getTitle()))
+        Review databaseReview = this.getCategoryReview(databaseCategory.getId(), reviewId);
+        if(databaseReview != null){
+                if(databaseReview.getTitle().equals(userReview.getTitle()))
                     throw new InformationExistsException("This review already" +
-                            " exists with title " + foundReview.getTitle());
+                            " exists with title " + databaseReview.getTitle());
                 else{
-                    foundReview.setCategory(foundCategory);
-                    foundReview.setDate(reviewObject.getDate());
-                    foundReview.setTitle(reviewObject.getTitle());
-                    foundReview.setText(reviewObject.getText());
-                    foundReview.setUser(getUserDetails());
-                    return reviewRepository.save(foundReview);
+                    databaseReview.setCategory(databaseCategory);
+                    databaseReview.setDate(userReview.getDate());
+                    databaseReview.setTitle(userReview.getTitle());
+                    databaseReview.setText(userReview.getText());
+                    databaseReview.setUser(getUser());
+                    return reviewRepository.save(databaseReview);
                 }
         }else{
             throw new InformationNotFoundException("This review does not " +
@@ -153,12 +136,9 @@ public class CategoryService {
     }
 
     public void deleteCategoryReview(Long categoryId, Long reviewId){
-
         //check if exists
-        Review foundReview =
-                reviewRepository.findByCategoryIdAndIdAndUserId(categoryId, reviewId,
-                        getUserDetails().getId());
-        if(foundReview == null){
+        Review databaseReview = this.getCategoryReview(categoryId, reviewId);
+        if(databaseReview == null){
             throw new InformationNotFoundException("This review cannot be " +
                     "deleted as the ID does not exists ID: " + reviewId);
         }else{
@@ -171,14 +151,14 @@ public class CategoryService {
     /***************Comments**************/
 
     public List<Comment> getCategoryReviewComments(Long categoryId, Long reviewId) {
-        Review review = this.getCategoryReview(categoryId, reviewId);
-        return review.getCommentList();
+        Review databaseReview = this.getCategoryReview(categoryId, reviewId);
+        return databaseReview.getCommentList();
     }
 
     public Comment getCategoryReviewComment(Long categoryId, Long reviewId, Long commentId) {
-        Review review = this.getCategoryReview(categoryId, reviewId);
+        Review databaseReview = this.getCategoryReview(categoryId, reviewId);
 
-        for(Comment comment : review.getCommentList()) {
+        for(Comment comment : databaseReview.getCommentList()) {
             if(comment.getId().equals(commentId)){
                 return comment;
             }
@@ -188,27 +168,27 @@ public class CategoryService {
     }
 
     public Comment createCategoryReviewComment(Long categoryId, Long reviewId,
-                                         Comment comment) {
-       Review dbReview = this.getCategoryReview(categoryId, reviewId);
-       comment.setReview(dbReview);
-       comment.setUser(getUserDetails());
-       return commentRepository.save(comment);
+                                         Comment userComment) {
+       Review databaseReview = this.getCategoryReview(categoryId, reviewId);
+       userComment.setReview(databaseReview);
+       userComment.setUser(getUser());
+       return commentRepository.save(userComment);
     }
 
-    public void updateCategoryReviewComment(Long categoryId, Long reviewId, Comment commentObject, Long commentId) {
-        Comment comment = this.getCategoryReviewComment(categoryId, reviewId, commentId);
-        comment.setDate(commentObject.getDate());
-        comment.setText(commentObject.getText());
-        comment.setUser(getUserDetails());
-        commentRepository.save(comment);
+    public void updateCategoryReviewComment(Long categoryId, Long reviewId, Comment userObject, Long commentId) {
+        Comment databaseComment = this.getCategoryReviewComment(categoryId, reviewId, commentId);
+        databaseComment.setDate(userObject.getDate());
+        databaseComment.setText(userObject.getText());
+        databaseComment.setUser(getUser());
+        commentRepository.save(databaseComment);
     }
 
     public void deleteCategoryReviewComment(Long categoryId, Long reviewId, Long commentId) {
-        Comment comment = this.getCategoryReviewComment(categoryId, reviewId, commentId);
-        commentRepository.delete(comment);
+        Comment databaseComment = this.getCategoryReviewComment(categoryId, reviewId, commentId);
+        commentRepository.delete(databaseComment);
     }
 
-    private User getUserDetails() {
+    private User getUser() {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         return userDetails.getUser();

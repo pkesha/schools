@@ -44,6 +44,15 @@ public class Category {
 
     //Default case
     public Category() {
+
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setReviewList(List<Review> reviewList) {
+        this.reviewList = reviewList;
     }
 
     public User getUser() {

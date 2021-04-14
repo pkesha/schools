@@ -38,10 +38,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Comment> commentList;
 
-
-
-
-
     public User(Long id, String emailAddress, String password) {
         this.id = id;
         this.emailAddress = emailAddress;
@@ -76,6 +72,27 @@ public class User {
     public void setUserProfile(UserProfile userProfile) {
         this.userProfile = userProfile;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
+    }
+
+    public void setReviewList(List<Review> reviewList) {
+        this.reviewList = reviewList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
     @Override
     public String toString() {
         return "User{" +

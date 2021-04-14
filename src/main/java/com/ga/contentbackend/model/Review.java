@@ -54,6 +54,14 @@ public class Review {
     public Review() {
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
     public List<Comment> getCommentList() {
         return commentList;
     }
