@@ -86,16 +86,19 @@ class CategoryControllerTest {
         categoryList.add(category1);
 
         String uri = "/api/categories";
+
+
         //when -> here we call the categoryService method underTest and state
         // the expected output
         Mockito.when(
                 categoryService.getCategories()).thenReturn(categoryList);
 
-        //here we are specifying the end point under test
+        //Then here we are specifying the end point under test
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
                 "/api/categories").accept(
                 MediaType.APPLICATION_JSON);
 
+        //Returns a JSON response
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
 
         System.out.println(mvcResult.getResponse());
