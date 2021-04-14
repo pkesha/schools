@@ -148,7 +148,7 @@ public class CategoryService {
                 getUser().getId()
         );
 
-        if(databaseComment == null) {
+        if (databaseComment == null) {
             throw new InformationNotFoundException("Comment " + commentId + " was not found");
         } else {
             return databaseComment;
