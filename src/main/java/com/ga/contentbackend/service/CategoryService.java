@@ -141,15 +141,18 @@ public class CategoryService {
     }
 
     public Comment getCategoryReviewComment(Long categoryId, Long reviewId, Long commentId) {
-        Review databaseReview = this.getCategoryReview(categoryId, reviewId);
+        Comment databaseComment = commentRepository.findByCategoryIdAAndReviewIdAndIdAndUserId(
+                categoryId,
+                reviewId,
+                commentId,
+                getUser().getId()
+        );
 
-        for (Comment comment : databaseReview.getCommentList()) {
-            if (comment.getId().equals(commentId)) {
-                return comment;
-            }
+        if(databaseComment == null) {
+            throw new InformationNotFoundException("Comment " + commentId + " was not found");
+        } else {
+            return databaseComment;
         }
-
-        throw new InformationNotFoundException("Comment " + commentId + " was not found");
     }
 
     public Comment createCategoryReviewComment(Long categoryId, Long reviewId,
