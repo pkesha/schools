@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping(path="/")
 
 public class PublicCategoryController {
-    private PublicCategoryService publicCategoryService;
+    private final PublicCategoryService publicCategoryService;
 
     @Autowired
     public PublicCategoryController(PublicCategoryService publicCategoryService) {
