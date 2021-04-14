@@ -52,7 +52,7 @@ public class PublicCategoryController {
 
     /***************Comments**************/
     @GetMapping("/categories/{categoryId}/reviews/{reviewId}/comments")
-    public List getCategoryReviewComments(@PathVariable Long categoryId, @PathVariable Long reviewId){
+    public List<Comment> getCategoryReviewComments(@PathVariable Long categoryId, @PathVariable Long reviewId){
         return publicCategoryService.getCategoryReviewComments(categoryId, reviewId);
     }
 

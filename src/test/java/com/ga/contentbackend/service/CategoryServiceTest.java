@@ -25,7 +25,7 @@ class CategoryServiceTest {
     private CategoryService serviceUnderTest;
 
     @Test
-    void getCategories() {
+    void getCategories(){
        CategoryService categoryService = mock(CategoryService.class);
        CategoryRepository categoryRepository = mock(CategoryRepository.class);
 
