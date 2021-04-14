@@ -1,9 +1,9 @@
 package com.ga.contentbackend.security;
 
 
+import com.ga.contentbackend.model.User;
 import com.ga.contentbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.ga.contentbackend.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

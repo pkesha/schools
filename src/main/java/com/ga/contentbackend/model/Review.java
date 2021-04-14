@@ -29,7 +29,7 @@ public class Review {
     //One to Many relationship
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @ManyToOne

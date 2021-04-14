@@ -23,7 +23,7 @@ public class Comment {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="review_id")
+    @JoinColumn(name = "review_id")
     private Review review;
 
     @ManyToOne
