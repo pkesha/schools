@@ -136,16 +136,28 @@ class CategoryControllerTest {
                         .andExpect(MockMvcResultMatchers.status().isCreated())
                         .andReturn();
 
-        System.out.println(mvcResult.getResponse());
-
-        //the -> using a utility method to map the Json to the cateogoryList
-        String expected = mapToJson(category);
-
-    //    assertEquals(expected, mvcResult.getResponse());
     }
 
     @Test
-    void updateCategory() {
+    @WithCustomUser(username="amuniz@gmail.com")
+    void updateCategory() throws Exception {
+        //Given
+        Category category = new Category(1L,"Course","Description",null);
+        //Then here we are specifying the end point under test
+        String uri = "/api/categories/1";
+        //when -> here we call the categoryService method underTest and state
+        // the expected output
+        Mockito.when(
+                categoryService.updateCategory(category, 1L)).thenReturn(category);
+
+        //Returns a JSON response
+        MvcResult mvcResult =
+                mockMvc.perform(MockMvcRequestBuilders.put("/api/categories/1")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .content(mapToJson(category)))
+                        .andExpect(MockMvcResultMatchers.status().isOk())
+                        .andReturn();
     }
 
     @Test
