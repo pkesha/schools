@@ -123,9 +123,9 @@ class CommentRepositoryTest {
 
     @Test
     void checkForDeletedReview() {
-        reviewRepository.delete(this.testReview);
-        assertEquals(null, reviewRepository.findByCategoryIdAndIdAndUserId(testCategory.getId(),
-                testReview.getId(),
+        commentRepository.delete(this.testComment);
+        assertEquals(null, commentRepository.findByReviewIdAndIdAndUserId(testReview.getId(),
+                testComment.getId(),
                 testUser.getId()));
     }
 }
