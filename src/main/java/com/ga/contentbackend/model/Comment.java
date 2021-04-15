@@ -34,6 +34,12 @@ public class Comment {
 
     }
 
+    public Comment(Long id, String text, LocalDate date) {
+        this.id = id;
+        this.text = text;
+        this.date = date;
+    }
+
     public Review getReview() {
         return review;
     }
