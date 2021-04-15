@@ -37,7 +37,6 @@ class CategoryRepositoryTest {
 
         userRepository.save(testUser);
 
-
         this.testCategory.setUser(testUser);
     }
     @AfterEach
@@ -55,6 +54,7 @@ class CategoryRepositoryTest {
 
     @Test
     void givenSavedCategoryShouldReturnCategory() throws Exception {
+        categoryRepository.save(this.testCategory);
         Category fetchedCategory = categoryRepository.findById(testCategory.getId()).get();
         assertEquals(mapToJson(testCategory), mapToJson(fetchedCategory));
     }
@@ -74,4 +74,6 @@ class CategoryRepositoryTest {
         List<Category> fetchedCategoryList = categoryRepository.findAllByUserId(this.testUser.getId());
         assertEquals(mapToJson(fetchedCategoryList.get(0)), mapToJson(this.testCategory));
     }
+
+
 }
