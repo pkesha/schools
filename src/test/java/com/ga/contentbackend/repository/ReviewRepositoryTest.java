@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -84,9 +85,17 @@ class ReviewRepositoryTest {
 
     @Test
     void findAllCategoriesByUserId() throws JsonProcessingException {
-        categoryRepository.save(this.testCategory);
-        List<Category> fetchedCategoryList = categoryRepository.findAllByUserId(this.testUser.getId());
-        assertEquals(mapToJson(fetchedCategoryList.get(0)), mapToJson(this.testCategory));
+        userRepository.save(testUser);
+        categoryRepository.save(testCategory);
+        this.testReview.setCategory(this.testCategory);
+        reviewRepository.save(testReview);
+
+        List<Review> reviewList = new ArrayList<>();
+        reviewList.add(testReview);
+        this.testCategory.setReviewList(reviewList);
+
+        List<Review> fetchedReviewList = testCategory.getReviewList();
+        assertEquals(mapToJson(fetchedReviewList.get(0)), mapToJson(this.testReview));
     }
 
     @Test
