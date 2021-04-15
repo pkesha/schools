@@ -48,10 +48,10 @@ public class CategoryController {
     }
 
     @DeleteMapping("/categories/{categoryId}")
-    public void deleteCategory(@PathVariable Long categoryId) {
+    public HttpStatus deleteCategory(@PathVariable Long categoryId) {
         categoryService.deleteCategory(categoryId);
-//        HashMap message = new HashMap();
-//        message.put("status", status)
+        return HttpStatus.OK;
+
     }
 
     /***************Review**************/
@@ -62,23 +62,25 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/{categoryId}/reviews/{reviewId}")
-    public Review getCategoryReview(@PathVariable Long categoryId,
+    public ResponseEntity<Review> getCategoryReview(@PathVariable Long categoryId,
                                     @PathVariable Long reviewId) {
-        return categoryService.getCategoryReview(categoryId, reviewId);
+        return new ResponseEntity<>(categoryService.getCategoryReview(categoryId,
+                reviewId),HttpStatus.OK);
     }
 
     @PostMapping("/categories/{categoryId}/reviews")
-    public Review createCategoryReview(@PathVariable Long categoryId,
+    public ResponseEntity<Review> createCategoryReview(@PathVariable Long categoryId,
                                        @RequestBody Review review) {
-        return categoryService.createCategoryReview(categoryId, review);
+        return new ResponseEntity<>(categoryService.createCategoryReview(categoryId
+                , review),HttpStatus.CREATED);
     }
 
     @PutMapping("/categories/{categoryId}/reviews/{reviewId}")
-    public Review updateCategoryReview(@PathVariable Long categoryId,
+    public ResponseEntity<Review> updateCategoryReview(@PathVariable Long categoryId,
                                        @PathVariable Long reviewId,
                                        @RequestBody Review updateReview) {
-        return categoryService.updateCategoryReview(categoryId, reviewId,
-                updateReview);
+        return new ResponseEntity<>(categoryService.updateCategoryReview(categoryId, reviewId,
+                updateReview),HttpStatus.OK);
     }
 
     @DeleteMapping("/categories/{categoryId}/reviews/{reviewId}")

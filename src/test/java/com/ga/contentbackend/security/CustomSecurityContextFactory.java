@@ -17,7 +17,6 @@ public class CustomSecurityContextFactory
 
         User user = new User(1L,withCustomUser.username(),"123456");
 
-
         MyUserDetails myUserDetails = new MyUserDetails(user);
 
         var a = new UsernamePasswordAuthenticationToken(
