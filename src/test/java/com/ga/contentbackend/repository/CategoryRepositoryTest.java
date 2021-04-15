@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ga.contentbackend.model.Category;
 import com.ga.contentbackend.model.User;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +11,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,20 +27,23 @@ class CategoryRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
-    private Category category;
-    private User user;
+    private Category testCategory;
+    private User testUser;
 
     @BeforeEach
     public void setUp() {
-        category = new Category(1L,"Movie","Movies and More");
-        user = new User(1L, "pk@gmail.com", "123456");
-        userRepository.save(user);
-        this.category.setUser(user);
+        testCategory = new Category(1L,"Movie","Movies and More");
+        testUser = new User(1L, "pk@gmail.com", "123456");
+
+        userRepository.save(testUser);
+
+
+        this.testCategory.setUser(testUser);
     }
     @AfterEach
     public void tearDown() {
         categoryRepository.deleteAll();
-        category = null;
+        testCategory = null;
     }
 
     //TODO repository methods updated
@@ -51,22 +55,23 @@ class CategoryRepositoryTest {
 
     @Test
     void givenSavedCategoryShouldReturnCategory() throws Exception {
-        categoryRepository.save(category);
-        Category fetchedCategory = categoryRepository.findById(category.getId()).get();
-        assertEquals(mapToJson(category), mapToJson(fetchedCategory));
+        Category fetchedCategory = categoryRepository.findById(testCategory.getId()).get();
+        assertEquals(mapToJson(testCategory), mapToJson(fetchedCategory));
     }
 
     @Test
     void givenSavedCategoryShouldReturnCategoryWithSameId() {
-        categoryRepository.save(category);
-        Category fetchedCategory = categoryRepository.findByIdAndUserId(category.getId(), this.user.getId());
-        assertEquals(category.getId(), fetchedCategory.getId());
-        assertEquals(category.getUser().getId(), fetchedCategory.getUser().getId());
+        categoryRepository.save(this.testCategory);
+        Category fetchedCategory = categoryRepository.findByIdAndUserId(testCategory.getId(), this.testUser.getId());
+        System.out.println(fetchedCategory);
+        assertEquals(testCategory.getId(), fetchedCategory.getId());
+        assertEquals(testCategory.getUser().getId(), fetchedCategory.getUser().getId());
     }
 
     @Test
-    void findAllByUserId() {
+    void findAllCategoriesByUserId() throws JsonProcessingException {
+        categoryRepository.save(this.testCategory);
+        List<Category> fetchedCategoryList = categoryRepository.findAllByUserId(this.testUser.getId());
+        assertEquals(mapToJson(fetchedCategoryList.get(0)), mapToJson(this.testCategory));
     }
-
-
 }
