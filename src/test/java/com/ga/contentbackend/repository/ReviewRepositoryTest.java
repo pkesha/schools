@@ -70,7 +70,7 @@ class ReviewRepositoryTest {
     }
 
     @Test
-    void givenSavedCategoryShouldReturnCategoryWithSameId() {
+    void givenSavedReviewShouldReturnReviewWithSameId() {
         userRepository.save(testUser);
         categoryRepository.save(testCategory);
         reviewRepository.save(testReview);
@@ -84,7 +84,7 @@ class ReviewRepositoryTest {
     }
 
     @Test
-    void findAllCategoriesByUserId() throws JsonProcessingException {
+    void findAllReviewsByUserId() throws JsonProcessingException {
         userRepository.save(testUser);
         categoryRepository.save(testCategory);
         this.testReview.setCategory(this.testCategory);
@@ -99,7 +99,7 @@ class ReviewRepositoryTest {
     }
 
     @Test
-    void findByCategoryIdAndUserIdCreateRepository() {
+    void findByReviewIdAndUserIdCreateReview() {
         userRepository.save(testUser);
         categoryRepository.save(testCategory);
         this.testReview.setCategory(this.testCategory);
@@ -107,9 +107,10 @@ class ReviewRepositoryTest {
     }
 
     @Test
-    void checkForDeletedCategory() {
-        categoryRepository.delete(this.testCategory);
-        assertEquals(null, categoryRepository.findByIdAndUserId(testCategory.getId(),
+    void checkForDeletedReview() {
+        reviewRepository.delete(this.testReview);
+        assertEquals(null, reviewRepository.findByCategoryIdAndIdAndUserId(testCategory.getId(),
+                testReview.getId(),
                 testUser.getId()));
     }
 }
