@@ -45,42 +45,38 @@ public class PublicCategoryService {
 
     public List<Review> getCategoryReviews(Long categoryId){
         //checks if the category exists in the DB
-        Category foundCategory = getCategory(categoryId);
+        Category databaseCategory = this.getCategory(categoryId);
 
-        //check if foundCategory is null
-        return foundCategory.getReviewList();
+        //check if databaseCategory is null
+        return databaseCategory.getReviewList();
     }
 
     public Review getCategoryReview(Long categoryId, Long reviewId){
         //checks if the category exists in the DB
-        Category foundCategory = getCategory(categoryId);
 
-        Review foundReview =
-                reviewRepository.findByCategoryIdAndId(categoryId, reviewId);
-        if(foundReview == null){
+        Review databaseReview = reviewRepository.findByCategoryIdAndId(categoryId, reviewId);
+        if(databaseReview == null){
             throw new InformationNotFoundException("Review with ID " + reviewId + "not found");
         } else{
-            return foundReview;
+            return databaseReview;
         }
 
     }
 
     /***************Comments**************/
     public List<Comment> getCategoryReviewComments(Long categoryId, Long reviewId) {
-        Review review = this.getCategoryReview(categoryId, reviewId);
-        return review.getCommentList();
+        Review databaseReview = this.getCategoryReview(categoryId, reviewId);
+        return databaseReview.getCommentList();
     }
 
     public Comment getCategoryReviewComment(Long categoryId, Long reviewId, Long commentId) {
-        Review review = this.getCategoryReview(categoryId, reviewId);
-
-        for (Comment comment : review.getCommentList()) {
-            if (comment.getId().equals(commentId)) {
-                return comment;
-            }
+        Comment databaseComment = commentRepository.findByCategoryIdAndReviewId(categoryId, reviewId,commentId);
+        if(databaseComment == null) {
+            throw new InformationNotFoundException("Comment with id " + commentId + " not found");
+        } else
+        {
+            return databaseComment;
         }
-        throw new InformationNotFoundException("Comment " + commentId + " was not found");
     }
-
 
 }

@@ -26,7 +26,7 @@ public class Category {
     private String description;
 
     @JsonIgnore
-    @OneToMany(mappedBy="category")
+    @OneToMany(mappedBy = "category")
     private List<Review> reviewList;
 
     @ManyToOne

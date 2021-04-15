@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "comments")
@@ -23,7 +24,7 @@ public class Comment {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="review_id")
+    @JoinColumn(name = "review_id")
     private Review review;
 
     @ManyToOne

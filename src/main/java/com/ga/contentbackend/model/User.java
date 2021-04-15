@@ -25,7 +25,7 @@ public class User {
     private String password;
 
     @OneToOne
-    @JoinColumn(name="user_profile_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_profile_id", referencedColumnName = "id")
     private UserProfile userProfile;
 
     @OneToMany(mappedBy = "user")
@@ -64,7 +64,9 @@ public class User {
     }
 
 
-    /**User Profile one ot one binding*/
+    /**
+     * User Profile one ot one binding
+     */
     public UserProfile getUserProfile() {
         return userProfile;
     }

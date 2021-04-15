@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="/")
+@RequestMapping(path = "/")
 
 public class PublicCategoryController {
     private final PublicCategoryService publicCategoryService;
@@ -27,12 +27,12 @@ public class PublicCategoryController {
     /**********CATEGORIES*************/
 
     @GetMapping("/categories")
-    public List<Category> getCategories(){
+    public List<Category> getCategories() {
         return publicCategoryService.getCategories();
     }
 
     @GetMapping("/categories/{categoryId}")
-    public Category getCategory(@PathVariable Long categoryId){
+    public Category getCategory(@PathVariable Long categoryId) {
         return publicCategoryService.getCategory(categoryId);
     }
 
@@ -40,19 +40,19 @@ public class PublicCategoryController {
     /***************Review**************/
 
     @GetMapping("/categories/{categoryId}/reviews")
-    public List<Review> getCategoryReviews(@PathVariable Long categoryId){
+    public List<Review> getCategoryReviews(@PathVariable Long categoryId) {
         return publicCategoryService.getCategoryReviews(categoryId);
     }
 
     @GetMapping("/categories/{categoryId}/reviews/{reviewId}")
     public Review getCategoryReview(@PathVariable Long categoryId,
-                                    @PathVariable Long reviewId){
+                                    @PathVariable Long reviewId) {
         return publicCategoryService.getCategoryReview(categoryId, reviewId);
     }
 
     /***************Comments**************/
     @GetMapping("/categories/{categoryId}/reviews/{reviewId}/comments")
-    public List<Comment> getCategoryReviewComments(@PathVariable Long categoryId, @PathVariable Long reviewId){
+    public List<Comment> getCategoryReviewComments(@PathVariable Long categoryId, @PathVariable Long reviewId) {
         return publicCategoryService.getCategoryReviewComments(categoryId, reviewId);
     }
 

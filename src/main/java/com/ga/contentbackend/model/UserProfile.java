@@ -3,7 +3,6 @@ package com.ga.contentbackend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "user_profiles")
@@ -22,7 +21,7 @@ public class UserProfile {
     private String lastName;
 
     @JsonIgnore
-    @OneToOne(mappedBy="userProfile")
+    @OneToOne(mappedBy = "userProfile")
     private User user;
 
 
@@ -35,6 +34,7 @@ public class UserProfile {
         this.lastName = lastName;
 //        this.credentials = credentials;
     }
+
     public UserProfile() {
 
     }
@@ -63,7 +63,9 @@ public class UserProfile {
         this.lastName = lastName;
     }
 
-    /**User One to One binding**/
+    /**
+     * User One to One binding
+     **/
     public User getUser() {
         return user;
     }
