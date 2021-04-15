@@ -137,7 +137,7 @@ class CategoryControllerTest {
         Category category = new Category(1L,"Course","Description");
 
         //when -> here we call the categoryService method underTest and state
-        mockMvc.perform(MockMvcRequestBuilders.delete(BASE_URL + "/1",1L)
+        mockMvc.perform(MockMvcRequestBuilders.delete(BASE_URL + "/{id}",1L)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .accept(MediaType.APPLICATION_JSON_VALUE))
                         .andExpect(status().isOk());
@@ -259,23 +259,16 @@ class CategoryControllerTest {
                 .andReturn();
     }
 
-//    //Given
-//    Category category = new Category(1L,"Course","Description");
-//    //when -> here we call the categoryService method underTest and state
-//    // the expected output
-//        Mockito.when(
-//                categoryService.updateCategory(category, 1L)).thenReturn(category);
-//
-//    //Returns a JSON response
-//                mockMvc.perform(MockMvcRequestBuilders.put(BASE_URL)
-//            .contentType(MediaType.APPLICATION_JSON_VALUE)
-//                        .accept(MediaType.APPLICATION_JSON_VALUE)
-//                        .content(mapToJson(category)))
-//            .andExpect(MockMvcResultMatchers.status().isOk())
-
-
     @Test
-    void deleteCategoryReview() {
+    @WithCustomUser(username="amuniz@gmail.com")
+    void deleteCategoryReview() throws Exception {
+
+        //when -> here we call the categoryService method underTest and state
+        mockMvc.perform(MockMvcRequestBuilders.delete(BASE_URL +
+                "/{categoryId}"+ REVIEW_MODEL+"/{reviewId}",1L,1L)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk());
     }
 
     @Test
