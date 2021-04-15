@@ -48,7 +48,7 @@ class CommentRepositoryTest {
         testCategory = new Category(1L,"Movie","Movies and More");
         testUser = new User(1L, "pk@gmail.com", "123456");
         testReview = new Review(1L, "cat", "dog", date, testCategory);
-        testComment = new Comment()
+        testComment = new Comment(1L, "animal", date, testReview, testUser);
 
         this.testCategory.setUser(testUser);
         this.testReview.setCategory(this.testCategory);
@@ -68,12 +68,14 @@ class CommentRepositoryTest {
     }
 
     @Test
-    void givenSavedReviewShouldReturnReview() throws Exception {
+    void givenSavedCommentShouldReturnComment() throws Exception {
         userRepository.save(testUser);
         categoryRepository.save(testCategory);
         reviewRepository.save(testReview);
-        Review fetchedReview = reviewRepository.findByCategoryIdAndId(testCategory.getId(), testReview.getId());
-        assertEquals(mapToJson(testReview), mapToJson(fetchedReview));
+        commentRepository.save(testComment);
+
+        Comment fetchedComment = commentRepository.findByReviewIdAndId(testReview.getId(), testComment.getId());
+        assertEquals(mapToJson(testComment), mapToJson(fetchedComment));
     }
 
     @Test
