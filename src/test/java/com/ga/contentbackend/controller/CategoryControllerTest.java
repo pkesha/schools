@@ -128,13 +128,13 @@ class CategoryControllerTest {
                 "/api/categories").contentType(MediaType.APPLICATION_JSON).content(mapToJson(category));
 
         //Returns a JSON response
-        MvcResult mvcResult =
-                mockMvc.perform(MockMvcRequestBuilders.post("/api/categories")
+         mockMvc.perform(MockMvcRequestBuilders.post(
+                "/api/categories")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .accept(MediaType.APPLICATION_JSON_VALUE)
                         .content(mapToJson(category)))
                         .andExpect(MockMvcResultMatchers.status().isCreated())
-                        .andReturn();
+                        ;
 
     }
 
@@ -151,7 +151,6 @@ class CategoryControllerTest {
                 categoryService.updateCategory(category, 1L)).thenReturn(category);
 
         //Returns a JSON response
-        MvcResult mvcResult =
                 mockMvc.perform(MockMvcRequestBuilders.put("/api/categories/1")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .accept(MediaType.APPLICATION_JSON_VALUE)
@@ -161,7 +160,21 @@ class CategoryControllerTest {
     }
 
     @Test
-    void deleteCategory() {
+    @WithCustomUser(username="custom@amuniz.com")
+    void deleteCategory() throws Exception{
+        //Given
+        Category category = new Category(1L,"Course","Description",null);
+        //Then here we are specifying the end point under test
+        String uri = "/api/categories/1";
+        //when -> here we call the categoryService method underTest and state
+        // the expected output
+
+        //Returns a JSON response
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api" +
+                        "/categories/{id}",1L)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .accept(MediaType.APPLICATION_JSON_VALUE))
+                        .andExpect(status().isOk());
     }
 
     @Test
