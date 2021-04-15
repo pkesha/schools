@@ -118,6 +118,7 @@ class CommentRepositoryTest {
         categoryRepository.save(testCategory);
         this.testReview.setCategory(this.testCategory);
         reviewRepository.save(testReview);
+        commentRepository.save(testComment);
     }
 
     @Test
