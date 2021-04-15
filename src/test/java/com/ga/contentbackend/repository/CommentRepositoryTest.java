@@ -98,13 +98,18 @@ class CommentRepositoryTest {
         categoryRepository.save(testCategory);
         this.testReview.setCategory(this.testCategory);
         reviewRepository.save(testReview);
+        commentRepository.save(testComment);
 
         List<Review> reviewList = new ArrayList<>();
         reviewList.add(testReview);
         this.testCategory.setReviewList(reviewList);
 
-        List<Review> fetchedReviewList = testCategory.getReviewList();
-        assertEquals(mapToJson(fetchedReviewList.get(0)), mapToJson(this.testReview));
+        List<Comment> commentList = new ArrayList<>();
+        commentList.add(testComment);
+        this.testReview.setCommentList(commentList);
+
+        List<Comment> fetchedCommentList = testReview.getCommentList();
+        assertEquals(mapToJson(fetchedCommentList.get(0)), mapToJson(this.testComment));
     }
 
     @Test
