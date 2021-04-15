@@ -79,8 +79,8 @@ class CategoryControllerTest {
     void getCategories() throws IOException,Exception {
         //Given
         List<Category> categoryList = new ArrayList<Category>();
-        Category category = new Category(1L,"Course","Description",null);
-        Category category1 = new Category(2L,"Course","Description",null);
+        Category category = new Category(1L,"Course","Description");
+        Category category1 = new Category(2L,"Course","Description");
         categoryList.add(category);
         categoryList.add(category1);
 
@@ -116,7 +116,7 @@ class CategoryControllerTest {
     @WithCustomUser(username="amuniz@gmail.com")
     void createCategory() throws Exception {
         //Given
-        Category category = new Category(1L,"Course","Description",null);
+        Category category = new Category(1L,"Course","Description");
         String uri = "/api/categories";
         //when -> here we call the categoryService method underTest and state
         // the expected output
@@ -142,7 +142,7 @@ class CategoryControllerTest {
     @WithCustomUser(username="amuniz@gmail.com")
     void updateCategory() throws Exception {
         //Given
-        Category category = new Category(1L,"Course","Description",null);
+        Category category = new Category(1L,"Course","Description");
         //Then here we are specifying the end point under test
         String uri = "/api/categories/1";
         //when -> here we call the categoryService method underTest and state
@@ -163,7 +163,7 @@ class CategoryControllerTest {
     @WithCustomUser(username="custom@amuniz.com")
     void deleteCategory() throws Exception{
         //Given
-        Category category = new Category(1L,"Course","Description",null);
+        Category category = new Category(1L,"Course","Description");
         //Then here we are specifying the end point under test
         String uri = "/api/categories/1";
         //when -> here we call the categoryService method underTest and state

@@ -5,55 +5,78 @@ import com.ga.contentbackend.model.User;
 import com.ga.contentbackend.repository.CategoryRepository;
 import com.ga.contentbackend.repository.CommentRepository;
 import com.ga.contentbackend.repository.ReviewRepository;
+import com.ga.contentbackend.repository.UserRepository;
+import com.ga.contentbackend.security.CustomSecurityContextFactory;
+import com.ga.contentbackend.security.WithCustomUser;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.test.context.support.WithSecurityContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class CategoryServiceTest {
 
+    @Mock
+    private CategoryRepository categoryRepository;
+    @Mock
+    private UserRepository userRepository;
+
+
+    @Autowired
+    @InjectMocks
+     private CategoryService categoryService;
+
+    List<Category> categoryList;
+    private Category category1;
+    private Category category2;
+    private User user;
+
+    @BeforeEach
+    public void setUp() {
+        categoryList = new ArrayList<>();
+        category1 = new Category(1L, "Movies","Things about movies");
+        category2 = new Category(2L, "Lunch","Things about lunch");
+        categoryList.add(category1);
+        categoryList.add(category2);
+    }
+
+    @AfterEach
+    public void tearDown(){
+        category1 = category2 = null;
+        categoryList = null;
+    }
+
+    @Autowired
     @InjectMocks
     private CategoryService serviceUnderTest;
 
     @Test
     void getCategories(){
-       CategoryService categoryService = mock(CategoryService.class);
-       CategoryRepository categoryRepository = mock(CategoryRepository.class);
 
-        //given
-        List<Category> categoryList = new ArrayList<Category>();
-        Category category = new Category(1L,"Course","Description",null);
-        Category category1 = new Category(2L,"Course","Description",null);
-        User user1 = new User(1L,"Alvin","amuniz@gmail.com");
-        category.setUser(user1);
-        category1.setUser(user1);
-        categoryList.add(category);
-        categoryList.add(category1);
-        System.out.println(categoryList);
-        System.out.println(categoryRepository.save(category));
-        System.out.println(categoryRepository.save(category1));
-
-        Mockito.when(categoryRepository.save(any(Category.class))).thenReturn(category);
-
-        Mockito.when(
-                categoryRepository.findAllByUserId(any(Long.class))).thenReturn(categoryList);
-
-        System.out.println(categoryRepository);
-
-        List<Category> testList = categoryService.getCategories();
-
-        System.out.println(testList);
-
-        //then
+        when(categoryRepository.findByTitleAndUserId(any(),any(Long.class))).thenReturn(category1);
+        when(categoryRepository.save(any())).thenReturn(category1);
+        categoryService.createCategory(category1);
+        verify(categoryRepository,times(1)).findByTitleAndUserId(any(),
+                any(Long.class));
+        verify(categoryRepository,times(1)).save(any());
     }
 
     @Test

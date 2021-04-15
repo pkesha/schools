@@ -34,18 +34,17 @@ public class Category {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Category(Long id, String title, String description,
-                    List<Review> reviewList) {
+    public Category(Long id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.reviewList = reviewList;
     }
 
     //Default case
     public Category() {
 
     }
+
 
     public void setId(Long id) {
         this.id = id;
