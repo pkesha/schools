@@ -34,10 +34,20 @@ public class Comment {
 
     }
 
-    public Comment(Long id, String text, LocalDate date) {
+
+    public Comment(Long id, String text) {
         this.id = id;
         this.text = text;
         this.date = date;
+    }
+
+    public Comment(Long id, String text, LocalDate date, Review review, User user) {
+        this.id = id;
+        this.text = text;
+        this.date = date;
+        this.review = review;
+        this.user = user;
+
     }
 
     public Review getReview() {

@@ -280,7 +280,7 @@ class CategoryControllerTest {
         LocalDate date = LocalDate.of(2020, 1, 8);
         Review review = new Review(1L,"review","reviewTest",
                 null, category);
-        Comment comment = new Comment(1L,"Comment One",date);
+        Comment comment = new Comment(1L,"Comment One");
         comment.setReview(review);
         List<Comment> commentList = new ArrayList<>();
 
@@ -315,7 +315,7 @@ class CategoryControllerTest {
         LocalDate date = LocalDate.of(2020, 1, 8);
         Review review = new Review(1L,"review","reviewTest",
                 null, category);
-        Comment comment = new Comment(1L,"Comment One",null);
+        Comment comment = new Comment(1L,"Comment One");
         comment.setReview(review);
 
         //when -> what we expect to happen
