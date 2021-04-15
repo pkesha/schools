@@ -79,17 +79,17 @@ class CommentRepositoryTest {
     }
 
     @Test
-    void givenSavedReviewShouldReturnReviewWithSameId() {
+    void givenSavedReviewShouldReturnReviewWithSameId() throws JsonProcessingException {
         userRepository.save(testUser);
         categoryRepository.save(testCategory);
         reviewRepository.save(testReview);
+        commentRepository.save(testComment);
 
-        Review fetchedReview = reviewRepository.findByCategoryIdAndIdAndUserId(testCategory.getId(),
-                testReview.getId(),
+        Comment fetchedComment = commentRepository.findByReviewIdAndIdAndUserId(testReview.getId(),
+                testComment.getId(),
                 testUser.getId());
-        System.out.println(fetchedReview);
-        assertEquals(testReview.getId(), fetchedReview.getId());
-        assertEquals(testReview.getUser().getId(), fetchedReview.getUser().getId());
+        assertEquals(testComment.getId(), fetchedComment.getId());
+        assertEquals(testComment.getUser().getId(), fetchedComment.getUser().getId());
     }
 
     @Test
