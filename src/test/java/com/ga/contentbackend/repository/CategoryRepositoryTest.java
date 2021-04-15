@@ -75,5 +75,15 @@ class CategoryRepositoryTest {
         assertEquals(mapToJson(fetchedCategoryList.get(0)), mapToJson(this.testCategory));
     }
 
+    @Test
+    void findByCategoryIdAndUserIdCreateRepository() {
+        categoryRepository.save(this.testCategory);
+    }
 
+    @Test
+    void checkForDeletedCategory() {
+        categoryRepository.delete(this.testCategory);
+        assertEquals(null, categoryRepository.findByIdAndUserId(testCategory.getId(),
+                testUser.getId()));
+    }
 }
