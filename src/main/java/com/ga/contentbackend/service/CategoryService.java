@@ -186,7 +186,7 @@ public class CategoryService {
         commentRepository.delete(databaseComment);
     }
 
-    private User getUser() {
+    public User getUser() {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder
                 .getContext()
                 .getAuthentication()

@@ -56,6 +56,9 @@ public class CategoryServiceTest {
         category2 = new Category(2L, "Lunch","Things about lunch");
         categoryList.add(category1);
         categoryList.add(category2);
+        User user = new User(1L,"al","a.email.com");
+        category1.setUser(user);
+        category2.setUser(user);
     }
 
     @AfterEach
@@ -71,11 +74,12 @@ public class CategoryServiceTest {
     @Test
     void getCategories(){
 
-        when(categoryRepository.findByTitleAndUserId(any(),any(Long.class))).thenReturn(category1);
+
+        when(categoryRepository.findByTitleAndUserId(any(),any())).thenReturn(category1);
         when(categoryRepository.save(any())).thenReturn(category1);
         categoryService.createCategory(category1);
         verify(categoryRepository,times(1)).findByTitleAndUserId(any(),
-                any(Long.class));
+                any());
         verify(categoryRepository,times(1)).save(any());
     }
 

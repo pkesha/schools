@@ -100,7 +100,7 @@ class CategoryControllerTest {
         MvcResult mvcResult = mockMvc.perform(requestBuilder)
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.content().json(mapToJson(category)))
+                .andExpect(MockMvcResultMatchers.content().json(mapToJson(categoryList)))
                 .andReturn();
 
         System.out.println(mvcResult.getResponse());
