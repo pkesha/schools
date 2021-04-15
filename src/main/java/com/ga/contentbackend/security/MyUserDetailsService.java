@@ -1,6 +1,5 @@
 package com.ga.contentbackend.security;
 
-
 import com.ga.contentbackend.model.User;
 import com.ga.contentbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

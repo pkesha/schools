@@ -1,6 +1,5 @@
 package com.ga.contentbackend.controller;
 
-
 import com.ga.contentbackend.model.Category;
 import com.ga.contentbackend.model.Comment;
 import com.ga.contentbackend.model.Review;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController

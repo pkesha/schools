@@ -1,10 +1,8 @@
 package com.ga.contentbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.List;
-
 
 //Entity is each object an entry in the
 //table-> which is denoted with @Table
