@@ -341,6 +341,7 @@ class CategoryControllerTest {
     }
 
     @Test
+    @WithCustomUser(username="alvin@gmail.com")
     void createCategoryReviewComment() throws Exception{
         //Given
         List<Category> categoryList = new ArrayList<Category>();
@@ -348,25 +349,49 @@ class CategoryControllerTest {
         LocalDate date = LocalDate.of(2020, 1, 8);
         Review review = new Review(1L,"review","reviewTest",
                 null, category);
+        Comment comment = new Comment(1L,"Comment One");
+        comment.setReview(review);
 
         //when -> what we expect to happen
         Mockito.when(
-                categoryService.createCategoryReview(1L, review)).thenReturn(review);
+                categoryService.createCategoryReviewComment(1L,1L,
+                        comment)).thenReturn(comment);
 
         //Returns a JSON response
         mockMvc.perform(post(
-                BASE_URL+"/1"+REVIEW_MODEL)
+                BASE_URL+"/1"+REVIEW_MODEL+"/1"+COMMENT_MODEL)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .accept(MediaType.APPLICATION_JSON_VALUE)
-                .content(mapToJson(review)))
+                .content(mapToJson(comment)))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
     }
 
     @Test
-    void updateCategoryReviewComment() {
+    @WithCustomUser(username="alvin@gmail.com")
+    void updateCategoryReviewComment() throws Exception{
+        //Given
+        Category category = new Category(1L,"Course","Description");
+        Review review = new Review(1L,"review","reviewTest",
+                null, category);
+        Comment comment = new Comment(1L,"Comment One");
+        comment.setReview(review);
+        //when -> here we call the categoryService method underTest and state
+        // the expected output
+        Mockito.when(
+                categoryService.updateCategoryReviewComment( 1L,comment,1L
+        )).thenReturn(comment);
+
+        //Returns a JSON response
+        mockMvc.perform(MockMvcRequestBuilders.put(BASE_URL+"/1"+REVIEW_MODEL+"/1"+COMMENT_MODEL+"/1")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON_VALUE)
+                .content(mapToJson(comment)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
     }
 
     @Test
+    @WithCustomUser(username="alvin@gmail.com")
     void deleteCategoryReviewComment() {
     }
 }

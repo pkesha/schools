@@ -173,12 +173,13 @@ public class CategoryService {
         return commentRepository.save(userComment);
     }
 
-    public void updateCategoryReviewComment(Long reviewId, Comment userObject, Long commentId) {
+    public Comment updateCategoryReviewComment(Long reviewId,
+                                               Comment userObject, Long commentId) {
         Comment databaseComment = this.getCategoryReviewComment(reviewId, commentId);
         databaseComment.setDate(userObject.getDate());
         databaseComment.setText(userObject.getText());
         databaseComment.setUser(getUser());
-        commentRepository.save(databaseComment);
+        return commentRepository.save(databaseComment);
     }
 
     public void deleteCategoryReviewComment(Long reviewId, Long commentId) {
