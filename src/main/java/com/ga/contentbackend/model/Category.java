@@ -45,15 +45,6 @@ public class Category {
 
     }
 
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setReviewList(List<Review> reviewList) {
-        this.reviewList = reviewList;
-    }
-
     public User getUser() {
         return user;
     }
@@ -64,6 +55,10 @@ public class Category {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -84,6 +79,10 @@ public class Category {
 
     public List<Review> getReviewList() {
         return reviewList;
+    }
+
+    public void setReviewList(List<Review> reviewList) {
+        this.reviewList = reviewList;
     }
 
     @Override

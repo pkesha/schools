@@ -144,7 +144,7 @@ public class CategoryService {
         return databaseReview.getCommentList();
     }
 
-    public Comment getCategoryReviewComment(Long categoryId, Long reviewId, Long commentId) {
+    public Comment getCategoryReviewComment(Long reviewId, Long commentId) {
         Comment databaseComment = commentRepository.findByReviewIdAndIdAndUserId(
                 reviewId,
                 commentId,
@@ -173,16 +173,16 @@ public class CategoryService {
         return commentRepository.save(userComment);
     }
 
-    public void updateCategoryReviewComment(Long categoryId, Long reviewId, Comment userObject, Long commentId) {
-        Comment databaseComment = this.getCategoryReviewComment(categoryId, reviewId, commentId);
+    public void updateCategoryReviewComment(Long reviewId, Comment userObject, Long commentId) {
+        Comment databaseComment = this.getCategoryReviewComment(reviewId, commentId);
         databaseComment.setDate(userObject.getDate());
         databaseComment.setText(userObject.getText());
         databaseComment.setUser(getUser());
         commentRepository.save(databaseComment);
     }
 
-    public void deleteCategoryReviewComment(Long categoryId, Long reviewId, Long commentId) {
-        Comment databaseComment = this.getCategoryReviewComment(categoryId, reviewId, commentId);
+    public void deleteCategoryReviewComment(Long reviewId, Long commentId) {
+        Comment databaseComment = this.getCategoryReviewComment(reviewId, commentId);
         commentRepository.delete(databaseComment);
     }
 

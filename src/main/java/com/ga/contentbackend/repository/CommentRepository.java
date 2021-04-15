@@ -1,7 +1,6 @@
 package com.ga.contentbackend.repository;
 
 import com.ga.contentbackend.model.Comment;
-import com.ga.contentbackend.model.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

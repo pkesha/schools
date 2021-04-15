@@ -51,8 +51,16 @@ public class User {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getEmailAddress() {
         return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public String getPassword() {
@@ -63,7 +71,6 @@ public class User {
         this.password = password;
     }
 
-
     /**
      * User Profile one ot one binding
      */
@@ -73,14 +80,6 @@ public class User {
 
     public void setUserProfile(UserProfile userProfile) {
         this.userProfile = userProfile;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
     }
 
     public void setCategoryList(List<Category> categoryList) {

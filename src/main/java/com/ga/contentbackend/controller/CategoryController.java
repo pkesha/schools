@@ -1,15 +1,12 @@
 package com.ga.contentbackend.controller;
 
-import ch.qos.logback.core.rolling.helper.RollingCalendar;
 import com.ga.contentbackend.model.Category;
 import com.ga.contentbackend.model.Comment;
 import com.ga.contentbackend.model.Review;
 import com.ga.contentbackend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,16 +35,16 @@ public class CategoryController {
     }
 
     @PostMapping("/categories")
-    public ResponseEntity<Category> createCategory(@RequestBody Category category){
+    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
         return new ResponseEntity<>(categoryService.createCategory(category),
                 HttpStatus.CREATED);
     }
 
     @PutMapping("/categories/{categoryId}")
     public ResponseEntity<Category> updateCategory(@PathVariable Long categoryId,
-                                   @RequestBody Category category){
+                                                   @RequestBody Category category) {
         return new ResponseEntity<>(categoryService.updateCategory(category,
-                categoryId),HttpStatus.OK);
+                categoryId), HttpStatus.OK);
 
     }
 
@@ -99,10 +96,8 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/{categoryId}/reviews/{reviewId}/comments/{commentId}")
-    public Comment getCategoryReviewComment(@PathVariable Long categoryId,
-                                            @PathVariable Long reviewId,
-                                            @PathVariable Long commentId) {
-        return categoryService.getCategoryReviewComment(categoryId, reviewId, commentId);
+    public Comment getCategoryReviewComment(@PathVariable Long reviewId, @PathVariable Long commentId) {
+        return categoryService.getCategoryReviewComment(reviewId, commentId);
     }
 
     @PostMapping("/categories/{categoryId}/reviews/{reviewId}/comments")
@@ -114,20 +109,15 @@ public class CategoryController {
     }
 
     @PutMapping("/categories/{categoryId}/reviews/{reviewId}/comments/{commentId}")
-    public void updateCategoryReviewComment(@PathVariable Long categoryId,
-                                            @PathVariable Long reviewId,
+    public void updateCategoryReviewComment(@PathVariable Long reviewId,
                                             @RequestBody Comment comment,
                                             @PathVariable Long commentId) {
-        categoryService.updateCategoryReviewComment(categoryId,
-                reviewId, comment, commentId);
+        categoryService.updateCategoryReviewComment(reviewId, comment, commentId);
     }
 
     @DeleteMapping("/categories/{categoryId}/reviews/{reviewId}/comments/{commentId}")
-    public void deleteCategoryReviewComment(@PathVariable Long categoryId,
-                                            @PathVariable Long reviewId,
-                                            @PathVariable Long commentId) {
-        categoryService.deleteCategoryReviewComment(categoryId,
-                reviewId, commentId);
+    public void deleteCategoryReviewComment(@PathVariable Long reviewId, @PathVariable Long commentId) {
+        categoryService.deleteCategoryReviewComment(reviewId, commentId);
     }
 
 }

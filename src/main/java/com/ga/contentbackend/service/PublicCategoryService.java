@@ -13,9 +13,9 @@ import java.util.List;
 
 @Service
 public class PublicCategoryService {
-    private CategoryRepository categoryRepository;
-    private ReviewRepository reviewRepository;
-    private CommentRepository commentRepository;
+    private final CategoryRepository categoryRepository;
+    private final ReviewRepository reviewRepository;
+    private final CommentRepository commentRepository;
 
     public PublicCategoryService(CategoryRepository categoryRepository,
                                  ReviewRepository reviewRepository,
@@ -27,15 +27,15 @@ public class PublicCategoryService {
 
     /***************Categories**************/
 
-    public List<Category> getCategories(){
+    public List<Category> getCategories() {
         return categoryRepository.findAll();
     }
 
-    public Category getCategory(Long categoryId){
-        try{
+    public Category getCategory(Long categoryId) {
+        try {
             return categoryRepository.findById(categoryId).get();
-        } catch (Exception e){
-            throw  new InformationNotFoundException("Category with id " +
+        } catch (Exception e) {
+            throw new InformationNotFoundException("Category with id " +
                     categoryId + " not found");
         }
 
@@ -43,7 +43,7 @@ public class PublicCategoryService {
 
     /***************Review**************/
 
-    public List<Review> getCategoryReviews(Long categoryId){
+    public List<Review> getCategoryReviews(Long categoryId) {
         //checks if the category exists in the DB
         Category databaseCategory = this.getCategory(categoryId);
 
@@ -51,13 +51,13 @@ public class PublicCategoryService {
         return databaseCategory.getReviewList();
     }
 
-    public Review getCategoryReview(Long categoryId, Long reviewId){
+    public Review getCategoryReview(Long categoryId, Long reviewId) {
         //checks if the category exists in the DB
 
         Review databaseReview = reviewRepository.findByCategoryIdAndId(categoryId, reviewId);
-        if(databaseReview == null){
+        if (databaseReview == null) {
             throw new InformationNotFoundException("Review with ID " + reviewId + "not found");
-        } else{
+        } else {
             return databaseReview;
         }
 
@@ -69,12 +69,11 @@ public class PublicCategoryService {
         return databaseReview.getCommentList();
     }
 
-    public Comment getCategoryReviewComment(Long categoryId, Long reviewId, Long commentId) {
+    public Comment getCategoryReviewComment(Long reviewId, Long commentId) {
         Comment databaseComment = commentRepository.findByReviewIdAndId(reviewId, commentId);
-        if(databaseComment == null) {
+        if (databaseComment == null) {
             throw new InformationNotFoundException("Comment with id " + commentId + " not found");
-        } else
-        {
+        } else {
             return databaseComment;
         }
     }

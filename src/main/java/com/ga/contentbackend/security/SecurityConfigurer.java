@@ -21,14 +21,13 @@ import org.springframework.web.context.WebApplicationContext;
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     private MyUserDetailsService myUserDetailsService;
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
 
     @Autowired
     public void setMyUserDetailsService(MyUserDetailsService myUserDetailsService) {
         this.myUserDetailsService = myUserDetailsService;
     }
-
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
 
     // step1
     @Bean

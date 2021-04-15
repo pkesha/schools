@@ -25,14 +25,10 @@ public class UserProfile {
     private User user;
 
 
-//    @Column
-//    private List<String> credentials;
-
     public UserProfile(Long id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-//        this.credentials = credentials;
     }
 
     public UserProfile() {
@@ -73,14 +69,6 @@ public class UserProfile {
     public void setUser(User user) {
         this.user = user;
     }
-//
-//    public List<String> getCredentials() {
-//        return credentials;
-//    }
-//
-//    public void setCredentials(List<String> credentials) {
-//        this.credentials = credentials;
-//    }
 
     @Override
     public String toString() {

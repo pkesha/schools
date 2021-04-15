@@ -54,16 +54,12 @@ public class Review {
     public Review() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public List<Comment> getCommentList() {
+        return commentList;
     }
 
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
-    }
-
-    public List<Comment> getCommentList() {
-        return commentList;
     }
 
     public User getUser() {
@@ -76,6 +72,10 @@ public class Review {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getText() {
