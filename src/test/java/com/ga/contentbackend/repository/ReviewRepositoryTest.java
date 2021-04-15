@@ -100,7 +100,10 @@ class ReviewRepositoryTest {
 
     @Test
     void findByCategoryIdAndUserIdCreateRepository() {
-        categoryRepository.save(this.testCategory);
+        userRepository.save(testUser);
+        categoryRepository.save(testCategory);
+        this.testReview.setCategory(this.testCategory);
+        reviewRepository.save(testReview);
     }
 
     @Test
