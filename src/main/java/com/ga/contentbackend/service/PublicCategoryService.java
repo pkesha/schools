@@ -70,7 +70,7 @@ public class PublicCategoryService {
     }
 
     public Comment getCategoryReviewComment(Long categoryId, Long reviewId, Long commentId) {
-        Comment databaseComment = commentRepository.findByCategoryIdAndReviewId(categoryId, reviewId,commentId);
+        Comment databaseComment = commentRepository.findByReviewIdAndId(reviewId, commentId);
         if(databaseComment == null) {
             throw new InformationNotFoundException("Comment with id " + commentId + " not found");
         } else
