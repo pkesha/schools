@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-    Comment findByCategoryIdAndReviewId(Long categoryId, Long reviewId, Long commentId);
+    Comment findByReviewIdAndId(Long reviewId, Long commentId);
 
-    Comment findByCategoryIdAndReviewIdAndIdAndUserId(Long categoryId, Long reviewId, Long commentId, Long userId);
+    Comment findByReviewIdAndIdAndUserId(Long reviewId, Long commentId, Long userId);
 
 }
