@@ -54,8 +54,6 @@ class CategoryControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-
-
     @MockBean
     private CategoryService categoryService;
 
