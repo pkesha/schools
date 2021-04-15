@@ -106,8 +106,76 @@ Also making it so that a user is owner of each review / comment
 
 Unit Testing 
 
+| REQUEST TYPE     | END POINT | PAYLOAD | RESULTS |
+| ----------- | ----------- | ----------- |----------- |
+| GET | http://localhost:9092/api/categories|n/a|Categories List
+|POST| http://localhost:9092/api/categories|Category|Create Category|
 
+###
+GET http://localhost:9092/api/categories/{{categoryId}}
 
+###
+PUT http://localhost:9092/api/categories/{{categoryId}}
+
+###
+DELETE http://localhost:9092/api/categories/{{categoryId}}
+
+###
+GET http://localhost:9092/api/categories/{{categoryId}}/reviews
+
+###
+POST http://localhost:9092/api/categories/{{categoryId}}/reviews
+
+###
+GET http://localhost:9092/api/categories/{{categoryId}}/reviews/{{reviewId}}
+
+###
+PUT http://localhost:9092/api/categories/{{categoryId}}/reviews/{{reviewId}}
+
+###
+DELETE http://localhost:9092/api/categories/{{categoryId}}/reviews/{{reviewId}}
+
+###
+GET http://localhost:9092/api/categories/{{categoryId}}/reviews/{{reviewId}}/comments
+
+###
+POST http://localhost:9092/api/categories/{{categoryId}}/reviews/{{reviewId}}/comments
+
+###
+GET http://localhost:9092/api/categories/{{categoryId}}/reviews/{{reviewId}}/comments/{{commentId}}
+
+###
+PUT http://localhost:9092/api/categories/{{categoryId}}/reviews/{{reviewId}}/comments/{{commentId}}
+
+###
+DELETE http://localhost:9092/api/categories/{{categoryId}}/reviews/{{reviewId}}/comments/{{commentId}}
+
+###
+POST http://localhost:9092/auth/users/create
+
+###
+POST http://localhost:9092/auth/users/login
+
+###
+POST http://localhost:9092/auth/users/register
+
+###
+GET http://localhost:9092/categories
+
+###
+GET http://localhost:9092/categories/{{categoryId}}
+
+###
+GET | http://localhost:9092/categories/{{categoryId}}/reviews |
+
+###
+GET http://localhost:9092/categories/{{categoryId}}/reviews/{{reviewId}}
+
+###
+GET http://localhost:9092/categories/{{categoryId}}/reviews/{{reviewId}}/comments
+
+###
+GET http://localhost:9092/categories/{{categoryId}}/reviews/{{reviewId}}/comments/{{commentId}}
 
 
 

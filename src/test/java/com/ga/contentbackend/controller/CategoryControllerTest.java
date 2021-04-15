@@ -392,6 +392,14 @@ class CategoryControllerTest {
 
     @Test
     @WithCustomUser(username="alvin@gmail.com")
-    void deleteCategoryReviewComment() {
+    void deleteCategoryReviewComment() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.delete(BASE_URL +
+                "/{categoryId}"+ REVIEW_MODEL+"/{reviewId}"+COMMENT_MODEL+
+                        "/{commentId}",1L
+                ,1L, 1L)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk());
+
     }
 }
