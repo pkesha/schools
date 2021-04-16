@@ -8,6 +8,7 @@ import com.ga.contentbackend.model.Comment;
 import com.ga.contentbackend.model.Review;
 import com.ga.contentbackend.security.WithCustomUser;
 import com.ga.contentbackend.service.CategoryService;
+import com.ga.contentbackend.service.PublicCategoryService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,23 +24,19 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class CategoryControllerTest {
+@WithCustomUser(username = "amuniz@gmail.com")
+class PublicCategoryControllerTest {
 
-    private final String BASE_URL = "/api/categories";
+    private final String BASE_URL = "/categories";
     private final String REVIEW_MODEL = "/reviews";
     private final String COMMENT_MODEL = "/comments";
 
@@ -47,7 +44,7 @@ class CategoryControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private CategoryService categoryService;
+    private PublicCategoryService publicCategoryService;
 
     //Utility Methods for parsing Json
     protected String mapToJson(Object obj) throws JsonProcessingException {
@@ -63,8 +60,7 @@ class CategoryControllerTest {
     }
 
     @Test
-    @WithCustomUser(username="amuniz@gmail.com")
-    void getCategories() throws IOException,Exception {
+    void getCategories() throws Exception {
         //Given
         List<Category> categoryList = new ArrayList<Category>();
         Category category = new Category(1L,"Course","Description");
@@ -74,7 +70,7 @@ class CategoryControllerTest {
 
         //when -> what we expect to happen
         Mockito.when(
-                categoryService.getCategories()).thenReturn(categoryList);
+                publicCategoryService.getCategories()).thenReturn(categoryList);
 
         //Then here we are specifying the end point under test
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
@@ -95,28 +91,13 @@ class CategoryControllerTest {
                 .getContentAsString());
     }
 
-
     @Test
-    void shouldReturn403IfAuthWorking() throws IOException,Exception {
-        //Then here we are specifying the end point under test
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
-                BASE_URL).accept(
-                MediaType.APPLICATION_JSON);
-
-        //Returns a JSON response
-        MvcResult mvcResult = mockMvc.perform(requestBuilder)
-                .andExpect(status().isForbidden())
-                .andReturn();
-    }
-
-    @Test
-    @WithCustomUser(username="amuniz@gmail.com")
-    void getCategory() throws IOException,Exception {
+    void getCategory() throws Exception{
         //Given
         Category category = new Category(1L,"Course","Description");
         //when -> what we expect to happen
         Mockito.when(
-                categoryService.getCategory(1L)).thenReturn(category);
+                publicCategoryService.getCategory(1L)).thenReturn(category);
 
         //Then here we are specifying the end point under test
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
@@ -137,71 +118,20 @@ class CategoryControllerTest {
                 .getContentAsString());
     }
 
-
     @Test
-    @WithCustomUser(username="alvin.email.com")
-    void createCategory() throws Exception {
-        //Given
-        Category category = new Category(1L,"Course","Description");
-
-        Mockito.when(
-                categoryService.createCategory(category)).thenReturn(category);
-
-        //Returns a JSON response
-         mockMvc.perform(post(
-                "/api/categories")
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .accept(MediaType.APPLICATION_JSON_VALUE)
-                        .content(mapToJson(category)))
-                        .andExpect(MockMvcResultMatchers.status().isCreated());
-    }
-
-    @Test
-    @WithCustomUser(username="amuniz@gmail.com")
-    void updateCategory() throws Exception {
-        //Given
-        Category category = new Category(1L,"Course","Description");
-        //When
-        Mockito.when(
-                categoryService.updateCategory(category, 1L)).thenReturn(category);
-
-        //Returns a JSON response
-                mockMvc.perform(MockMvcRequestBuilders.put(BASE_URL+"/1")
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .accept(MediaType.APPLICATION_JSON_VALUE)
-                        .content(mapToJson(category)))
-                        .andExpect(MockMvcResultMatchers.status().isOk())
-                        .andReturn();
-    }
-
-    @Test
-    @WithCustomUser(username="custom@amuniz.com")
-    void deleteCategory() throws Exception{
-        //Given
-        Category category = new Category(1L,"Course","Description");
-
-        //When
-        mockMvc.perform(MockMvcRequestBuilders.delete(BASE_URL + "/{id}",1L)
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .accept(MediaType.APPLICATION_JSON_VALUE))
-                        .andExpect(status().isOk());
-    }
-
-    @Test
-    @WithCustomUser(username="alvin@email.com")
     void getCategoryReviews() throws Exception {
         //Given
         List<Category> categoryList = new ArrayList<Category>();
         Category category = new Category(1L,"Course","Description");
         LocalDate date = LocalDate.of(2020, 1, 8);
         Review review = new Review(1L,"review","reviewTest",
-             null, category);
+                null, category);
         List<Review> reviewList = new ArrayList<Review>();
         reviewList.add(review);
 
         //When
         Mockito.when(
-                categoryService.getCategoryReviews(1L)).thenReturn(reviewList);
+                publicCategoryService.getCategoryReviews(1L)).thenReturn(reviewList);
 
         //Then here we are specifying the end point under test
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
@@ -223,9 +153,8 @@ class CategoryControllerTest {
     }
 
     @Test
-    @WithCustomUser(username="alvin@email.com")
-    void getCategoryReview() throws Exception{
-//Given
+    void getCategoryReview() throws Exception {
+        //Given
         List<Category> categoryList = new ArrayList<Category>();
         Category category = new Category(1L,"Course","Description");
         LocalDate date = LocalDate.of(2020, 1, 8);
@@ -234,7 +163,7 @@ class CategoryControllerTest {
 
         //when -> what we expect to happen
         Mockito.when(
-                categoryService.getCategoryReview(1L, 1L)).thenReturn(review);
+                publicCategoryService.getCategoryReview(1L, 1L)).thenReturn(review);
 
         //Then here we are specifying the end point under test
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
@@ -256,65 +185,7 @@ class CategoryControllerTest {
     }
 
     @Test
-    @WithCustomUser(username="amuniz@gmail.com")
-    void createCategoryReview() throws Exception {
-
-        //Given
-        List<Category> categoryList = new ArrayList<Category>();
-        Category category = new Category(1L,"Course","Description");
-        LocalDate date = LocalDate.of(2020, 1, 8);
-        Review review = new Review(1L,"review","reviewTest",
-                null, category);
-
-        //when -> what we expect to happen
-        Mockito.when(
-                categoryService.createCategoryReview(1L, review)).thenReturn(review);
-
-        //Returns a JSON response
-        mockMvc.perform(post(
-                BASE_URL+"/1"+REVIEW_MODEL)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .accept(MediaType.APPLICATION_JSON_VALUE)
-                .content(mapToJson(review)))
-                .andExpect(MockMvcResultMatchers.status().isCreated());
-
-    }
-
-    @Test
-    @WithCustomUser(username="alvin@gmail.com")
-    void updateCategoryReview() throws Exception {
-        //Given
-        Category category = new Category(1L,"Course","Description");
-        Review review = new Review(1L,"review","reviewTest",
-                null, category);
-        //when
-        Mockito.when(
-                categoryService.updateCategoryReview(1L, 1L,review)).thenReturn(review);
-
-        //Returns a JSON response
-        mockMvc.perform(MockMvcRequestBuilders.put(BASE_URL+"/1"+REVIEW_MODEL+"/1")
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .accept(MediaType.APPLICATION_JSON_VALUE)
-                .content(mapToJson(review)))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn();
-    }
-
-    @Test
-    @WithCustomUser(username="amuniz@gmail.com")
-    void deleteCategoryReview() throws Exception {
-
-        //when -> here we call the categoryService method underTest and state
-        mockMvc.perform(MockMvcRequestBuilders.delete(BASE_URL +
-                "/{categoryId}"+ REVIEW_MODEL+"/{reviewId}",1L,1L)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .accept(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    @WithCustomUser(username = "alvin@email.com")
-    void getCategoryReviewComments() throws Exception{
+    void getCategoryReviewComments() throws Exception {
         List<Category> categoryList = new ArrayList<Category>();
         Category category = new Category(1L,"Course","Description");
         LocalDate date = LocalDate.of(2020, 1, 8);
@@ -326,7 +197,7 @@ class CategoryControllerTest {
 
         //when
         Mockito.when(
-                categoryService.getCategoryReviewComments(1L, 1L)).thenReturn(commentList);
+                publicCategoryService.getCategoryReviewComments(1L, 1L)).thenReturn(commentList);
 
         //Then
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
@@ -348,7 +219,6 @@ class CategoryControllerTest {
     }
 
     @Test
-    @WithCustomUser(username="amuniz@gmail.com")
     void getCategoryReviewComment() throws Exception {
         List<Category> categoryList = new ArrayList<Category>();
         Category category = new Category(1L,"Course","Description");
@@ -360,7 +230,7 @@ class CategoryControllerTest {
 
         //when -> what we expect to happen
         Mockito.when(
-                categoryService.getCategoryReviewComment(1L, 1L)).thenReturn(comment);
+                publicCategoryService.getCategoryReviewComment(1L, 1L)).thenReturn(comment);
 
         //Then here we are specifying the end point under test
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
@@ -378,67 +248,5 @@ class CategoryControllerTest {
 
         assertEquals(expected, mvcResult.getResponse()
                 .getContentAsString());
-    }
-
-    @Test
-    @WithCustomUser(username="alvin@gmail.com")
-    void createCategoryReviewComment() throws Exception{
-        //Given
-        List<Category> categoryList = new ArrayList<Category>();
-        Category category = new Category(1L,"Course","Description");
-        LocalDate date = LocalDate.of(2020, 1, 8);
-        Review review = new Review(1L,"review","reviewTest",
-                null, category);
-        Comment comment = new Comment(1L,"Comment One");
-        comment.setReview(review);
-
-        //when -> what we expect to happen
-        Mockito.when(
-                categoryService.createCategoryReviewComment(1L,1L,
-                        comment)).thenReturn(comment);
-
-        //Returns a JSON response
-        mockMvc.perform(post(
-                BASE_URL+"/1"+REVIEW_MODEL+"/1"+COMMENT_MODEL)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .accept(MediaType.APPLICATION_JSON_VALUE)
-                .content(mapToJson(comment)))
-                .andExpect(MockMvcResultMatchers.status().isCreated());
-    }
-
-    @Test
-    @WithCustomUser(username="alvin@gmail.com")
-    void updateCategoryReviewComment() throws Exception{
-        //Given
-        Category category = new Category(1L,"Course","Description");
-        Review review = new Review(1L,"review","reviewTest",
-                null, category);
-        Comment comment = new Comment(1L,"Comment One");
-        comment.setReview(review);
-        //when
-        Mockito.when(
-                categoryService.updateCategoryReviewComment( 1L,comment,1L
-        )).thenReturn(comment);
-
-        //Returns a JSON response
-        mockMvc.perform(MockMvcRequestBuilders.put(BASE_URL+"/1"+REVIEW_MODEL+"/1"+COMMENT_MODEL+"/1")
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .accept(MediaType.APPLICATION_JSON_VALUE)
-                .content(mapToJson(comment)))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn();
-    }
-
-    @Test
-    @WithCustomUser(username="alvin@gmail.com")
-    void deleteCategoryReviewComment() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.delete(BASE_URL +
-                "/{categoryId}"+ REVIEW_MODEL+"/{reviewId}"+COMMENT_MODEL+
-                        "/{commentId}",1L
-                ,1L, 1L)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .accept(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isOk());
-
     }
 }

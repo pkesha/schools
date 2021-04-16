@@ -74,7 +74,6 @@ public class CategoryServiceTest {
     @Test
     void getCategories(){
 
-
         when(categoryRepository.findByTitleAndUserId(any(),any())).thenReturn(category1);
         when(categoryRepository.save(any())).thenReturn(category1);
         categoryService.createCategory(category1);
