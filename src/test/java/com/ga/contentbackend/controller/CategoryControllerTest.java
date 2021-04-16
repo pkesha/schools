@@ -95,6 +95,20 @@ class CategoryControllerTest {
                 .getContentAsString());
     }
 
+
+    @Test
+    void shouldReturn403IfAuthWorking() throws IOException,Exception {
+        //Then here we are specifying the end point under test
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+                BASE_URL).accept(
+                MediaType.APPLICATION_JSON);
+
+        //Returns a JSON response
+        MvcResult mvcResult = mockMvc.perform(requestBuilder)
+                .andExpect(status().isForbidden())
+                .andReturn();
+    }
+
     @Test
     @WithCustomUser(username="alvin.email.com")
     void createCategory() throws Exception {
