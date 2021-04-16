@@ -132,8 +132,7 @@ class CategoryControllerTest {
     void updateCategory() throws Exception {
         //Given
         Category category = new Category(1L,"Course","Description");
-        //when -> here we call the categoryService method underTest and state
-        // the expected output
+        //When
         Mockito.when(
                 categoryService.updateCategory(category, 1L)).thenReturn(category);
 
@@ -152,7 +151,7 @@ class CategoryControllerTest {
         //Given
         Category category = new Category(1L,"Course","Description");
 
-        //when -> here we call the categoryService method underTest and state
+        //When
         mockMvc.perform(MockMvcRequestBuilders.delete(BASE_URL + "/{id}",1L)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .accept(MediaType.APPLICATION_JSON_VALUE))
@@ -171,7 +170,7 @@ class CategoryControllerTest {
         List<Review> reviewList = new ArrayList<Review>();
         reviewList.add(review);
 
-        //when -> what we expect to happen
+        //When
         Mockito.when(
                 categoryService.getCategoryReviews(1L)).thenReturn(reviewList);
 
@@ -187,7 +186,7 @@ class CategoryControllerTest {
                 .andExpect(MockMvcResultMatchers.content().json(mapToJson(reviewList)))
                 .andReturn();
 
-        //the -> using a utility method to map the Json to the cateogoryList
+        //the -> using a utility method to map the object to json
         String expected = mapToJson(reviewList);
 
         assertEquals(expected, mvcResult.getResponse()
@@ -203,7 +202,6 @@ class CategoryControllerTest {
         LocalDate date = LocalDate.of(2020, 1, 8);
         Review review = new Review(1L,"review","reviewTest",
                 null, category);
-
 
         //when -> what we expect to happen
         Mockito.when(
@@ -221,7 +219,7 @@ class CategoryControllerTest {
                 .andExpect(MockMvcResultMatchers.content().json(mapToJson(review)))
                 .andReturn();
 
-        //the -> using a utility method to map the Json to the cateogoryList
+        //the -> using a utility method to map the object to json
         String expected = mapToJson(review);
 
         assertEquals(expected, mvcResult.getResponse()
@@ -260,8 +258,7 @@ class CategoryControllerTest {
         Category category = new Category(1L,"Course","Description");
         Review review = new Review(1L,"review","reviewTest",
                 null, category);
-        //when -> here we call the categoryService method underTest and state
-        // the expected output
+        //when
         Mockito.when(
                 categoryService.updateCategoryReview(1L, 1L,review)).thenReturn(review);
 
@@ -298,11 +295,11 @@ class CategoryControllerTest {
         comment.setReview(review);
         List<Comment> commentList = new ArrayList<>();
 
-        //when -> what we expect to happen
+        //when
         Mockito.when(
                 categoryService.getCategoryReviewComments(1L, 1L)).thenReturn(commentList);
 
-        //Then here we are specifying the end point under test
+        //Then
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
                 BASE_URL + "/1" + REVIEW_MODEL + "/1" + COMMENT_MODEL).accept(
                 MediaType.APPLICATION_JSON);
@@ -314,7 +311,7 @@ class CategoryControllerTest {
                 .andExpect(MockMvcResultMatchers.content().json(mapToJson(commentList)))
                 .andReturn();
 
-        //the -> using a utility method to map the Json to the cateogoryList
+        //the
         String expected = mapToJson(commentList);
 
         assertEquals(expected, mvcResult.getResponse()
@@ -389,8 +386,7 @@ class CategoryControllerTest {
                 null, category);
         Comment comment = new Comment(1L,"Comment One");
         comment.setReview(review);
-        //when -> here we call the categoryService method underTest and state
-        // the expected output
+        //when
         Mockito.when(
                 categoryService.updateCategoryReviewComment( 1L,comment,1L
         )).thenReturn(comment);
