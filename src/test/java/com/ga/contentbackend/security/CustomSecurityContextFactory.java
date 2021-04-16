@@ -6,6 +6,9 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.test.context.support.WithSecurityContextFactory;
 
+/*** Allows us to access the end points needing authentication with a custom
+user details and annotation***/
+
 public class CustomSecurityContextFactory
         implements WithSecurityContextFactory<WithCustomUser> {
 
