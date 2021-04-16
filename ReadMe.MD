@@ -1,4 +1,4 @@
-##Content Review Database
+## Content Review Database
 This backend will allow the client to save users who then proceed to provide
 their reviews on subjects and content of their choice. Each user can leave a
 review that will fall under any particular category of the users choosing. Under
@@ -8,7 +8,7 @@ In consideration of the user experience, users will only be able to use a First
 and Last name and not a custom defined user name. This will provide a communal
 experience that lends itself towards a sense of community.
 
-##User Stories
+## User Stories
 * As a User I want to register
 * As a User I want to login
 * As a User I want to Create, Read, Update and Delete a Category
@@ -18,12 +18,12 @@ experience that lends itself towards a sense of community.
 * As a User I want to get all Reviews under a Category regardless of User 
 * As a User I want to get all Comments under a Review regardless of User 
 
-##Domain Models
+## Domain Models
 
 ![img.png](img.png)
 
 --------------
-##Application Set-Up
+## Application Set-Up
 * Dependencies: 
    * Spring v2.4.4
    * PostgreSQL v13.2
@@ -48,7 +48,7 @@ experience that lends itself towards a sense of community.
 * GitHub setup
 
 ----------------
-##Progress
+## Progress
 - [x] MileStone:
 Hello World REST end-point test
 - [x] Milestone: Basic Models in place 
@@ -70,17 +70,17 @@ Hello World REST end-point test
 - [X] Public read only of content 
 - [X] User can do full CRUD operations on the categories they created
 
-##Testing and Security
+## Testing and Security
 
-#Interation Tests
+# Interation Tests
 We used on the controller class to verify correctedness with end point behaviour suinf Mockito.
 ![image](https://user-images.githubusercontent.com/28934521/115064784-f7947100-9eb2-11eb-81aa-fc5eed4ca157.png)
 
-#Unit Tests
+# Unit Tests
 We also instantiated unit testing on the repository to confirm integrity of repository/data layer
 ![image](https://user-images.githubusercontent.com/28934521/115064928-1f83d480-9eb3-11eb-99b4-58aecbe1de63.png)
 
-#Custom Security Context for Authentication
+# Custom Security Context for Authentication
 We found our controller tests failed unless we had a user saved to the Security context. This was acheived with a custom annotation @WithCustomUser(username="{insertname}" and also a Security Context Factory
 ![image](https://user-images.githubusercontent.com/28934521/115065115-5ce86200-9eb3-11eb-8afc-0577319d74f4.png)
 
@@ -89,7 +89,7 @@ With that we are able to test whether authentication is working or not with the 
 
 
 
-##User Specific Requests
+## User Specific Requests
 | REQUEST TYPE     | END POINT | PAYLOAD | RESULTS |
 | :-----------: | :-----------: | :-----------: |:-----------: |
 |**GET**| http://localhost:9092/api/categories|N/A|Categories List|
@@ -111,7 +111,7 @@ With that we are able to test whether authentication is working or not with the 
 |**POST**| http://localhost:9092/auth/users/login|Login Request|Authentication for login|
 |**POST**| http://localhost:9092/auth/users/register|User Profile| Create User Profile|
 
-##Public Requests
+## Public Requests
 | REQUEST TYPE     | END POINT | PAYLOAD | RESULTS |
 | ----------- | ----------- | ----------- |----------- |
 |**GET**| http://localhost:9092/categories| N/A| Category Lists
