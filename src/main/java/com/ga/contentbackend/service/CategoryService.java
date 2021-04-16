@@ -103,18 +103,22 @@ public class CategoryService {
         String userReviewText = userReview.getText();
 
         //Not concerned about large user base
-        databaseCategory.getReviewList().forEach(review -> {
-            if (review.getTitle().equals(userReviewTitle)) {
-                throw new InformationExistsException("Review with title " + userReviewTitle + " exists");
-            } else if (review.getText().equals(userReviewText)) {
-                throw new InformationExistsException("Review with text " + userReviewTitle + " exists");
-            }
-        });
+        if(databaseCategory.getReviewList() == null) {
+            databaseCategory.getReviewList().forEach(review -> {
+                if (review.getTitle().equals(userReviewTitle)) {
+                    throw new InformationExistsException("Review with title " + userReviewTitle + " exists");
+                } else if (review.getText().equals(userReviewText)) {
+                    throw new InformationExistsException("Review with text " + userReviewTitle + " exists");
+                }
+            });
+        } else {
 
-        userReview.setCategory(databaseCategory);
+            userReview.setCategory(databaseCategory);
 
-        userReview.setUser(getUser());
-        reviewRepository.save(userReview);
+            userReview.setUser(getUser());
+            reviewRepository.save(userReview);
+
+        }
         return userReview;
     }
 

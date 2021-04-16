@@ -177,6 +177,15 @@ GET http://localhost:9092/categories/{{categoryId}}/reviews/{{reviewId}}/comment
 ###
 GET http://localhost:9092/categories/{{categoryId}}/reviews/{{reviewId}}/comments/{{commentId}}
 
+Front End
+
+Using Angular as the front end we instantiated a simple view for displaying 
+the various parts .
+
+Generate a starter project with the angular cli
+ng new content-review-frontend
+
+
 
 
 

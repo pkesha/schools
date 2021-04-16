@@ -23,6 +23,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+
     @GetMapping("/categories")
     public List<Category> getCategories() {
         return categoryService.getCategories();
@@ -84,9 +85,10 @@ public class CategoryController {
     }
 
     @DeleteMapping("/categories/{categoryId}/reviews/{reviewId}")
-    public void deleteCategoryReview(@PathVariable Long categoryId,
+    public HttpStatus deleteCategoryReview(@PathVariable Long categoryId,
                                      @PathVariable Long reviewId) {
         categoryService.deleteCategoryReview(categoryId, reviewId);
+        return HttpStatus.OK;
     }
 
 
@@ -118,8 +120,10 @@ public class CategoryController {
     }
 
     @DeleteMapping("/categories/{categoryId}/reviews/{reviewId}/comments/{commentId}")
-    public void deleteCategoryReviewComment(@PathVariable Long reviewId, @PathVariable Long commentId) {
+    public HttpStatus deleteCategoryReviewComment(@PathVariable Long reviewId,
+                                         @PathVariable Long commentId) {
         categoryService.deleteCategoryReviewComment(reviewId, commentId);
+        return HttpStatus.OK;
     }
 
 }
