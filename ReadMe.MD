@@ -84,7 +84,7 @@ We also instantiated unit testing on the repository to confirm integrity of repo
 We found our controller tests failed unless we had a user saved to the Security context. This was acheived with a custom annotation @WithCustomUser(username="{insertname}" and also a Security Context Factory
 ![image](https://user-images.githubusercontent.com/28934521/115065115-5ce86200-9eb3-11eb-8afc-0577319d74f4.png)
 
-With that we are able to test whether authentication is working or not with the best testing method:
+With that we are able to test whether authentication is working or not with the below testing method:
 ![image](https://user-images.githubusercontent.com/28934521/115065238-81443e80-9eb3-11eb-912b-3f0c79c17cd0.png)
 
 
