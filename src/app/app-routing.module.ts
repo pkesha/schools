@@ -10,7 +10,7 @@ const routes: Routes = [
     component: CategoryComponent 
   },
   {
-    path: "user",
+    path: "register",
     component: RegisterComponent
   }
 ];
