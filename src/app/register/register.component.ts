@@ -3,10 +3,10 @@ import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class UserComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   public userName: string;
   public password: string;
   public emailAddress: string;
