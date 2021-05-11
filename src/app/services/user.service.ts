@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 const url = 'http://localhost:9092'
@@ -7,9 +7,6 @@ const url = 'http://localhost:9092'
   providedIn: 'root'
 })
 export class UserService {
-  private userName: string;
-  private emailAddress: string;
-  private password: string;
 
   constructor(private http: HttpClient) { }
 
@@ -20,6 +17,30 @@ export class UserService {
     .subscribe( user => {
       console.log(user);
     });
-    
+  }
+
+  loginUser(user: any): any {
+    this.http
+    .post(`${url}/auth/users/login`, user)
+    .subscribe(response =>{
+      const token = response['jwt'];
+      console.log(response)
+      localStorage.setItem('token', `${token}`);
+    })
+  }
+
+  createUserProfile(userProfile: any) {
+    const token = localStorage.getItem('token');
+      const requestOptions = {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        }),
+      };
+
+    this.http
+    .post(`${url}/auth/users/create`, userProfile, requestOptions)
+    .subscribe(userProfile =>{
+      console.log(userProfile);
+    })
   }
 }
