@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-const url = 'localhost:9092'
+const url = 'http://localhost:9092'
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,13 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  registerUser(user: any): any {
+  registerUser(user: any): void {
     console.log("user service - registerUser method");
     this.http
-    .post(`${url}/auth/users/register`, user);
+    .post(`${url}/auth/users/register`, user)
+    .subscribe( user => {
+      console.log(user);
+    });
     
   }
 }

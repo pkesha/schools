@@ -14,9 +14,11 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    console.log("user component ngOnInit")
   }
 
-  registerUser(){
+  registerUser(): void {
+
     const newUser = {
       userName: this.userName,
       emailAddress: this.emailAddress,
@@ -24,6 +26,10 @@ export class UserComponent implements OnInit {
     }
 
     this.userService.registerUser(newUser);
+  }
+
+  loginUser(): void {
+    
   }
 
 }
