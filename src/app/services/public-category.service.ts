@@ -12,10 +12,11 @@ export class PublicCategoryService {
   // Need to have Http client object when service starts
   constructor(private http : HttpClient) { }
 
-  // Method will get categories
-  getCategories(): any{
+  // Method will get categories from http
+  getCategories(): any {
+    console.log("getCategories call from service");
     return this.http
-      .get(`${url}/categories`)
+      .get(`${url}/categories`);
   }
 
 }
