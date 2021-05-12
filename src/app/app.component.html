@@ -1,18 +1,25 @@
-<!-- <nav>
-  <div class="nav-wrapper">
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a routerLink="/register">Register</a></li>
-      <li><a routerLink="/login">Login</a></li>
-      <li><a routerLink="/profile">Profile</a></li>
-    </ul>
-  </div>
-</nav> -->
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/login">Navbar</a>
-    <div class="navbar" id="navbarNav">
+  <div class="container-fluid navStyling">
+    <a class="navbar-brand" routerLink="/login">Login</a>
+
+    <div class="links">
+
+      <div class="dropdown user">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          User Links
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" href="#" *ngFor="let routes of userRoutes" routerLink={{routes}}>{{routes |
+              titlecase}}</a></li>
+        </ul>
+      </div>
+
+
     </div>
+  <div class="navbar" id="navbarNav">
+  </div>
+
   </div>
 </nav>
 

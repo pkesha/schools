@@ -5,3 +5,13 @@
     align-items: center;
     flex-direction: column;
   }
+
+.navStyling {
+  display: flex;
+  flex-direction: row;
+}
+
+.links {
+  margin-left: auto;
+}
+
