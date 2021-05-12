@@ -1,0 +1,6 @@
+<form>
+    <h2>Register a UserProfile</h2>
+    <input [(ngModel)]="firstName" type="text" name="First Name" placeholder="User Name"/>
+    <input [(ngModel)]="lastName" type="text" name="Last Name" placeholder="Email Address"/>
+    <input (click)="registerUserProfile()" type="submit" value="Create User Profile"/>
+</form>
