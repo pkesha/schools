@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   userRoutes: string[] = [
-    "register",
-    "login",
-    "profile"
+    'register',
+    'login',
+    'profile'
   ];
 
   title = 'content-review-frontend';
