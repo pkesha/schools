@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/Java-Spring-Boot-Recipe-App" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/angular" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/aws-elb/Java-Spring-Boot-Recipe-App" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/homework/gladiator-typescript" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/labs/astronauts" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/labs/death-square-angular" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lessons/Java-Spring-Boot-Recipe-App" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lessons/angular" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lessons/angular-recipes-frontend" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lessons/directives-fun" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lessons/ga-ui" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lessons/router" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lessons/typescript-files" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lessons/weather" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/projects/wayferer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/typescript-files" vcs="Git" />
+  </component>
+</project>

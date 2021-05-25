@@ -1,0 +1,80 @@
+version: '3'
+
+services:
+  eureka:
+    container_name: eureka
+    image: library/maven:3.6.1-jdk-11
+    ports:
+      - '8761:8761'
+    working_dir: /app
+    volumes:
+      - ./eureka-server:/app
+    command: 'mvn spring-boot:run'
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  api-gateway:
+    container_name: gateway
+    image: library/maven:3.6.1-jdk-11
+    ports:
+      - '8081:8081'
+    working_dir: /app
+    volumes:
+      - ./api-gateway:/app
+    depends_on:
+      - eureka
+    command: 'mvn spring-boot:run'
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  users-api:
+    container_name: user-api
+    image: library/maven:3.6.1-jdk-11
+    ports:
+      - '8082:8082'
+    working_dir: /app
+    volumes:
+      - ./users-api:/app
+    depends_on:
+      - eureka
+    command: 'mvn spring-boot:run'
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+#    networks:
+#      - postgres
+
+#  postgres_db:
+#    container_name: data-base
+#    image: "postgres:11.4"
+#    restart: always
+#    ports:
+#      - 5432:5432
+#    environment:
+#      POSTGRES_DB: my_db
+#      POSTGRES_PASSWORD: nE5kMc7JCGNqwDQM
+#    volumes:
+#      - postgres:/data/postgres
+#    networks:
+#      - postgres
+#
+#  pgadmin:
+#    container_name: pgadmin
+#    image: dpage/pgadmin4
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+#      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+#    volumes:
+#      - pgadmin:/root/.pgadmin
+#    ports:
+#      - "${PGADMIN_PORT:-5050}:80"
+#    networks:
+#      - postgres
+#    restart: unless-stopped
+#
+#networks:
+#  postgres:
+#    driver: bridge
+#
+#volumes:
+#  postgres:
+#  pgadmin:
