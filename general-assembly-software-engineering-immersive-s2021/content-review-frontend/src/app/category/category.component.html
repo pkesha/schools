@@ -1,0 +1,36 @@
+<form>
+  <h2>Create a Category</h2>
+<!--  <div class="form-check">-->
+<!--    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">-->
+<!--    <label class="form-check-label" for="flexRadioDefault1">-->
+<!--      Create-->
+<!--    </label>-->
+<!--  </div>-->
+<!--  <div class="form-check">-->
+<!--    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>-->
+<!--    <label class="form-check-label" for="flexRadioDefault2">-->
+<!--      Update-->
+<!--    </label>-->
+<!--  </div>-->
+<!--  <div class="form-check">-->
+<!--    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>-->
+<!--    <label class="form-check-label" for="flexRadioDefault2">-->
+<!--      Delete-->
+<!--    </label>-->
+<!--  </div>-->
+<form>
+  <input [(ngModel)]="title" type="text" name="title"
+         placeholder="Title"/>
+  <input [(ngModel)]="description" type="text" name="description"
+         placeholder="Description"/>
+  <input (click)="createCategory()" type="submit" value="Create Category"/>
+  <input (click)="getCategories()" type="submit" value="Get Category"/>
+</form>
+<div *ngIf="categories.length != 0">
+  <app-category-card
+    *ngFor="let category of categories"
+    [category]="category"
+    (deleteItemEvent)="getCategories()">
+
+  </app-category-card>
+</div>
