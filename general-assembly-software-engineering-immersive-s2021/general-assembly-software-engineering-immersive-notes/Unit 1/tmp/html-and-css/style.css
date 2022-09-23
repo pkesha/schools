@@ -1,0 +1,21 @@
+body {
+    background: lemonchiffon;
+    color:#444444;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+p {
+    color: red;
+    font-size: 24px;
+    text-align: center;
+}
+.paragraph {
+    color: purple;
+    font-size: 36px;
+}
+#p3 {
+    color: blue;
+}
+#p4 {
+    color: yellow;
+}

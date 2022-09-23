@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0674d468-fe60-4573-b706-3f4e27cd0a77" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/src/main/java/com/food/demo/CorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/src/main/resources/application-prod.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/typescript-files/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/typescript-files/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/typescript-files/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/typescript-files/.idea/typescript-files.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/typescript-files/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/typescript-files/classes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/typescript-files/inheritance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/typescript-files/interfaces.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/typescript-files/lab.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/typescript-files/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/typescript-files/math.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/typescript-files/type.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/typescript-files/youDo.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/weather/src/app/search/search.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework/gladiator-typescript/gladiator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/homework/gladiator-typescript/gladiator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labs/astronauts/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/labs/astronauts/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labs/astronauts/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/labs/astronauts/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labs/death-square-angular/imperial-starfleet/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/labs/death-square-angular/imperial-starfleet/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labs/death-square-angular/imperial-starfleet/src/app/internal-defenses/turret/turret.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/labs/death-square-angular/imperial-starfleet/src/app/internal-defenses/turret/turret.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labs/death-square-angular/imperial-starfleet/src/app/internal-defenses/turret/turret.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/labs/death-square-angular/imperial-starfleet/src/app/internal-defenses/turret/turret.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/angular-recipes-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/angular-recipes-frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/angular-recipes-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/angular-recipes-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/src/main/java/com/food/demo/security/JWTUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/src/main/java/com/food/demo/security/JWTUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/RecipesApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/RecipesApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/controller/CategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/controller/CategoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/controller/UserProfileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/controller/UserProfileController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/exception/InformationExistException.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/exception/InformationExistException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/exception/InformationNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/exception/InformationNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/Recipe.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/Recipe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/Request/LoginRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/Request/LoginRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/Response/FetchUsersResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/Response/FetchUsersResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/Response/LoginResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/Response/LoginResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/UserProfile.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/model/UserProfile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/repository/CategoryRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/repository/CategoryRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/repository/RecipeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/repository/RecipeRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/repository/UserProfileRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/repository/UserProfileRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/security/JWTUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/security/JWTUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/security/JwtRequestFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/security/JwtRequestFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/security/MyUserDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/security/MyUserDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/security/MyUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/security/MyUserDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/security/SecurityConfigurer.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/security/SecurityConfigurer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/service/CategoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/service/CategoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/service/UserProfileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/service/UserProfileService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/classes/com/food/demo/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/test-classes/com/food/demo/RecipesApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/aws-elb/Java-Spring-Boot-Recipe-App/target/test-classes/com/food/demo/RecipesApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/directives-fun/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/directives-fun/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/directives-fun/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/directives-fun/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/directives-fun/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/directives-fun/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/router/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/router/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/router/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/router/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/typescript-files/battle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/typescript-files/battle.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/typescript-files/multiplier.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/typescript-files/multiplier.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/weather/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/weather/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/weather/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/weather/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/wayferer/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/projects/wayferer/src/app/app.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/wayferer/src/app/cities/cities.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/projects/wayferer/src/app/cities/cities.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/wayferer/src/app/cities/cities.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/projects/wayferer/src/app/cities/cities.component.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/lessons/angular-recipes-frontend" />
+  </component>
+  <component name="ProjectId" id="1riGS1sATrfareytZEkOs0XBnD8" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0674d468-fe60-4573-b706-3f4e27cd0a77" name="Default Changelist" comment="" />
+      <created>1619451493159</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619451493159</updated>
+      <workItem from="1619451494832" duration="26000" />
+      <workItem from="1620666882403" duration="259000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
